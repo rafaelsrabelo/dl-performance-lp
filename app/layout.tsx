@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google"
+import { Toaster } from "sonner"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -21,12 +22,13 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="pt-BR"
       suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", fontSans.variable)}
+      className={cn("antialiased dark", fontMono.variable, "font-sans", fontSans.variable)}
     >
       <body>
         <ThemeProvider>{children}</ThemeProvider>
+        <Toaster richColors position="top-center" />
       </body>
     </html>
   )
