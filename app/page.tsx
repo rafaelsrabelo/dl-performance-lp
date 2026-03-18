@@ -209,7 +209,7 @@ export default function Page() {
             <ChecklistForm />
 
             <p className="mt-6 text-xs text-white/60">
-              PROMETEMOS NÃO ENVIAR SPAM, APENAS CONTEÚDO DE ALTA PERFORMANCE.
+              Preencha seu nome e clique no botão para receber o checklist direto no WhatsApp.
             </p>
           </div>
         </section>
@@ -292,22 +292,22 @@ export default function Page() {
                 {
                   title: "Primeiros 5km",
                   subtitle: "Construa sua base",
-                  img: "/images/pessoas/IMG_0575.JPG",
+                  img: "/images/IMG_2164.JPEG",
                 },
                 {
                   title: "Baixar pace",
                   subtitle: "Treinos de velocidade",
-                  img: "/images/pessoas/IMG_2168.JPG",
+                  img: "/images/IMG_2180.JPEG",
                 },
                 {
                   title: "Voltar sem dor",
                   subtitle: "Foco em reabilitação",
-                  img: "/images/pessoas/IMG_2170.JPG",
+                  img: "/images/IMG_2165.JPEG",
                 },
                 {
                   title: "Meia ou Maratona",
                   subtitle: "Estratégia de volume",
-                  img: "/images/pessoas/IMG_4650.JPG",
+                  img: "/images/IMG_2175.JPEG",
                 },
               ].map((item) => (
                 <div
@@ -405,7 +405,7 @@ export default function Page() {
               {/* Foto: bordas arredondadas e borda branca fina */}
               <div className="relative h-72 w-56 overflow-hidden rounded-lg border-2 border-white/20 sm:h-80 sm:w-64">
                 <Image
-                  src="/images/pessoas/IMG_6943.JPG"
+                  src="/images/foto diego.png"
                   alt="Diego Lopes"
                   fill
                   className="object-cover object-top"
@@ -665,7 +665,7 @@ export default function Page() {
           </Link>
           <div className="flex items-center gap-6 text-sm text-white/80">
             <a
-              href="https://wa.me/5511999999999"
+              href="https://wa.me/5585988267557"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 hover:text-[#e91e63]"
@@ -692,9 +692,11 @@ export default function Page() {
               <span>Instagram</span>
             </a>
           </div>
-          <p className="text-xs text-white/60">
-            © 2024 DL Performance. Todos os direitos reservados.
-          </p>
+          <div className="text-center text-xs text-white/60 space-y-1">
+            <p>Av. Eng. Leal Lima Verde, 1509</p>
+            <p>contato.dlperformance@gmail.com</p>
+            <p>© 2025 DL Performance. Todos os direitos reservados.</p>
+          </div>
         </div>
       </footer>
     </div>
