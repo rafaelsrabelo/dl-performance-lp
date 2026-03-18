@@ -25,6 +25,7 @@ import {
 import Image from "next/image"
 import Link from "next/link"
 import { ChecklistForm } from "@/components/checklist-form"
+import { NavLink } from "@/components/nav-link"
 
 export default function Page() {
   return (
@@ -43,24 +44,15 @@ export default function Page() {
             />
           </Link>
           <nav className="hidden items-center gap-8 md:flex">
-            <Link
-              href="#o-que-e"
-              className="text-sm font-medium text-foreground/90 hover:text-primary"
-            >
+            <NavLink href="#o-que-e" className="text-sm font-medium text-foreground/90 hover:text-primary">
               O que é
-            </Link>
-            <Link
-              href="#planos"
-              className="text-sm font-medium text-foreground/90 hover:text-primary"
-            >
+            </NavLink>
+            <NavLink href="#planos" className="text-sm font-medium text-foreground/90 hover:text-primary">
               Planos
-            </Link>
-            <Link
-              href="#resultados"
-              className="text-sm font-medium text-foreground/90 hover:text-primary"
-            >
+            </NavLink>
+            <NavLink href="#resultados" className="text-sm font-medium text-foreground/90 hover:text-primary">
               Resultados
-            </Link>
+            </NavLink>
           </nav>
           <Button
             asChild
@@ -68,7 +60,7 @@ export default function Page() {
             className="bg-dl-pink text-white border-0"
             style={{ backgroundColor: "#e91e63" }}
           >
-            <Link href="#planos" className="bg-dl-pink text-white" style={{ backgroundColor: "#e91e63" }}>Começar Agora</Link>
+            <NavLink href="#planos" className="bg-dl-pink text-white font-bold" style={{ backgroundColor: "#e91e63" }}>Começar Agora</NavLink>
           </Button>
         </div>
       </header>
@@ -162,46 +154,32 @@ export default function Page() {
           style={{ backgroundColor: "#0b0b0b" }}
         >
           <div className="container mx-auto max-w-4xl px-4 text-center">
+            <Badge
+              className="mb-4 w-fit border-0 bg-dl-pink px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white mx-auto"
+              style={{ backgroundColor: "#e91e63" }}
+            >
+              Baixe Gratuitamente
+            </Badge>
             <h2 className="mb-3 text-3xl font-bold text-white md:text-4xl">
               Checklist Anti-Lesão para Corredores
             </h2>
-            <p className="mb-10 text-white/90">
-              Descubra os 7 erros silenciosos que estão sabotando sua evolução e
-              aumentando seu risco de lesão.
+            <p className="mb-8 text-white/90 max-w-2xl mx-auto">
+              Descubra os 7 erros silenciosos que estão sabotando sua evolução — e aumentando seu risco de lesão.
             </p>
 
-            {/* Cards estilo imagem: fundo marrom-avermelhado, borda sutil, ícone rosa à esquerda */}
-            <div className="mb-10 grid gap-4 sm:grid-cols-3">
+            <div className="mb-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 text-left">
               {[
-                {
-                  icon: AlertTriangle,
-                  line1: "Volume excessivo sem",
-                  line2: "progressão",
-                },
-                {
-                  icon: Dumbbell,
-                  line1: "Falta de fortalecimento",
-                  line2: "específico",
-                },
-                {
-                  icon: Gauge,
-                  line1: "Cadência baixa e impacto",
-                  line2: "alto",
-                },
+                { icon: AlertTriangle, text: "Ajustes simples que reduzem impacto" },
+                { icon: LayoutList,   text: "Como organizar sua semana de treino" },
+                { icon: Gauge,        text: "Sinais de alerta que quase ninguém percebe" },
+                { icon: TrendingUp,   text: "Estratégia para aumentar volume sem quebrar" },
               ].map((item) => (
                 <div
-                  key={item.line1 + item.line2}
-                  className="flex items-center gap-4 rounded-xl border border-white/10 bg-[#301a24] px-5 py-5 text-left shadow-inner"
+                  key={item.text}
+                  className="flex items-start gap-3 rounded-xl border border-white/10 bg-[#301a24] px-5 py-5 shadow-inner"
                 >
-                  <item.icon
-                    className="h-8 w-8 shrink-0 text-[#e91e63]"
-                    aria-hidden
-                  />
-                  <span className="text-sm font-medium leading-snug text-white sm:text-base">
-                    {item.line1}
-                    <br />
-                    {item.line2}
-                  </span>
+                  <item.icon className="h-6 w-6 shrink-0 mt-0.5 text-[#e91e63]" aria-hidden />
+                  <span className="text-sm font-medium leading-snug text-white">{item.text}</span>
                 </div>
               ))}
             </div>
@@ -209,7 +187,7 @@ export default function Page() {
             <ChecklistForm />
 
             <p className="mt-6 text-xs text-white/60">
-              Preencha seu nome e clique no botão para receber o checklist direto no WhatsApp.
+              Prometemos não enviar spam. Apenas conteúdo de alta performance.
             </p>
           </div>
         </section>
@@ -222,10 +200,10 @@ export default function Page() {
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="mb-3 text-3xl font-bold text-gray-900 md:text-4xl">
-                Por que a maioria dos corredores não evolui?
+                Como você já deve ter percebido…
               </h2>
               <p className="text-gray-600">
-                Entenda os erros comuns que impedem sua melhor marca.
+                A maioria das pessoas treina assim:
               </p>
             </div>
             <div className="mx-auto mt-12 grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -234,13 +212,13 @@ export default function Page() {
                   icon: Copy,
                   title: "Copiando planilhas",
                   description:
-                    "Planilhas genéricas da internet não respeitam sua fisiologia única.",
+                    "Planilhas genéricas da internet não respeitam sua fisiologia e rotina únicas.",
                 },
                 {
                   icon: Users,
                   title: "Treino genérico",
                   description:
-                    "Falta de adaptação para sua rotina, cansaço e histórico esportivo.",
+                    "Sem adaptação para o seu histórico, cansaço acumulado e tempo disponível.",
                 },
                 {
                   icon: Brain,
@@ -252,7 +230,7 @@ export default function Page() {
                   icon: TrendingUp,
                   title: "Volume sem estratégia",
                   description:
-                    "Aumentar a quilometragem bruscamente é o caminho para a lesão.",
+                    "Aumentar quilometragem por conta própria é o caminho direto para a lesão.",
                 },
               ].map((item) => (
                 <Card
@@ -275,9 +253,17 @@ export default function Page() {
                 </Card>
               ))}
             </div>
-            <p className="mx-auto mt-14 max-w-2xl text-center italic text-gray-800">
-              &ldquo;O problema não é você. O problema é a falta de acompanhamento individualizado.&rdquo;
-            </p>
+            <div className="mx-auto mt-12 max-w-2xl text-center space-y-3 text-gray-800">
+              <p className="text-lg font-semibold">E o resultado é sempre o mesmo:</p>
+              <div className="flex flex-wrap justify-center gap-3">
+                {["⚠️ Dor", "⚠️ Estagnação", "⚠️ Pace travado", "⚠️ Desmotivação"].map((item) => (
+                  <span key={item} className="rounded-full border border-gray-200 bg-gray-50 px-4 py-1.5 text-sm font-medium text-gray-700">{item}</span>
+                ))}
+              </div>
+              <p className="pt-4 italic text-gray-700">
+                &ldquo;O problema não é você. Cada corpo responde diferente ao estímulo — rotina diferente, histórico diferente, tempo disponível diferente. Então por que o treino seria igual?&rdquo;
+              </p>
+            </div>
           </div>
         </section>
 
@@ -344,29 +330,34 @@ export default function Page() {
           <div className="container mx-auto grid items-center gap-12 px-4 md:grid-cols-2 md:gap-16">
             <div>
               <h2 className="mb-8 text-3xl font-bold text-white md:text-4xl">
-                O que você recebe no treinamento
+                O que você recebe ao entrar
               </h2>
               <ul className="space-y-6">
                 {[
                   {
                     icon: LayoutList,
-                    title: "Planilha Individualizada",
-                    desc: "Ajustada semanalmente conforme seu feedback.",
+                    title: "Planilha 100% Individualizada",
+                    desc: "Construída para sua rotina, nível atual e histórico de lesão.",
                   },
                   {
                     icon: RefreshCw,
                     title: "Integração Garmin/Strava",
-                    desc: "Sincronismo direto para análise de dados real-time.",
+                    desc: "Sincronismo direto para análise de métricas em tempo real.",
                   },
                   {
                     icon: Video,
-                    title: "Análise Educativa em Vídeo",
-                    desc: "Videos exclusivos explicando a técnica de cada exercício.",
+                    title: "Acompanhamento Técnico em Vídeo",
+                    desc: "Estratégias de prova individualizadas direto no app.",
+                  },
+                  {
+                    icon: Users,
+                    title: "Grupo Exclusivo de Alunos",
+                    desc: "Comunidade no WhatsApp para troca de experiências e motivação.",
                   },
                   {
                     icon: MessageCircle,
-                    title: "Suporte Direto com Coach",
-                    desc: "Tira-dúvidas via WhatsApp para ajustes rápidos.",
+                    title: "Suporte Direto com o Coach",
+                    desc: "Ajustes contínuos e acompanhamento técnico direto com Diego.",
                   },
                 ].map((item) => (
                   <li key={item.title} className="flex gap-4">
@@ -416,12 +407,10 @@ export default function Page() {
                 <h3 className="text-3xl font-bold text-white md:text-4xl">
                   Diego Lopes
                 </h3>
+                <p className="mt-1 text-white/60 font-medium">Profissional de Educação Física</p>
                 <p className="mt-4 text-white/90">
-                  Com mais de 15 anos de experiência no alto rendimento, Diego
-                  trouxe para a corrida a metodologia de precisão que aplicou no
-                  UFC e no CrossFit.
+                  Diego construiu uma metodologia de precisão aplicada à corrida, focada em performance sustentável e longevidade no esporte — para atletas amadores que querem evoluir de verdade.
                 </p>
-                {/* Cards de estatísticas: número em rosa, texto em branco */}
                 <div className="mt-6 flex flex-wrap gap-4">
                   <div className="rounded-lg border border-white/10 bg-white/5 px-5 py-4">
                     <p className="text-2xl font-bold text-[#e91e63] md:text-3xl">
@@ -433,10 +422,10 @@ export default function Page() {
                   </div>
                   <div className="rounded-lg border border-white/10 bg-white/5 px-5 py-4">
                     <p className="text-2xl font-bold text-[#e91e63] md:text-3xl">
-                      +5k
+                      +3.000
                     </p>
                     <p className="mt-0.5 text-sm font-medium text-white">
-                      TREINOS ORIENTADOS
+                      ALUNOS TRANSFORMADOS
                     </p>
                   </div>
                 </div>
@@ -522,20 +511,19 @@ export default function Page() {
           style={{ backgroundColor: "#0b0b0b" }}
         >
           <div className="container mx-auto overflow-visible px-4">
-            <h2 className="mb-12 text-center text-3xl font-bold text-white md:text-4xl">
-              Escolha o seu plano de evolução
-            </h2>
-            {/* pt-10 dá espaço para o badge "MAIS POPULAR" não ser cortado */}
+            <div className="mx-auto max-w-2xl text-center mb-4">
+              <h2 className="mb-3 text-3xl font-bold text-white md:text-4xl">
+                Planos de Acompanhamento
+              </h2>
+              <p className="text-white/70">
+                Investimento em performance, consistência e longevidade no esporte.
+              </p>
+            </div>
             <div className="mx-auto grid max-w-4xl gap-6 pt-10 md:grid-cols-3">
-              {/* Plano Trimestral - card cinza escuro, borda sutil, botão escuro */}
+              {/* Plano Trimestral */}
               <Card className="border border-white/10 bg-[#1a1a1a] text-white shadow-none">
                 <CardHeader>
                   <CardTitle className="text-white">Plano Trimestral</CardTitle>
-                  <p className="flex items-baseline gap-0.5">
-                    <span className="text-base font-medium text-white/80">R$</span>
-                    <span className="text-3xl font-bold tracking-tight text-white">249</span>
-                    <span className="text-sm font-normal text-white/60">/mês</span>
-                  </p>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   {["Planilha via App", "Suporte em 24h", "Ajustes Quinzenais"].map(
@@ -553,23 +541,18 @@ export default function Page() {
                     className="w-full border-white/20 bg-white/5 text-white hover:bg-white/10 hover:text-white"
                     asChild
                   >
-                    <Link href="#planos">Assinar Agora</Link>
+                    <a href="https://wa.me/5585988267557?text=Olá%20Diego!%20Tenho%20interesse%20no%20Plano%20Trimestral." target="_blank" rel="noopener noreferrer">Falar com o Coach</a>
                   </Button>
                 </CardContent>
               </Card>
 
-              {/* Plano Semestral - destaque: card maior, borda rosa, badge MAIS POPULAR, botão rosa */}
+              {/* Plano Semestral - destaque */}
               <Card className="relative z-10 overflow-visible border-2 border-[#e91e63] bg-[#1a1a1a] py-6 text-white shadow-none md:scale-105 md:py-8">
                 <div className="absolute -top-5 left-1/2 z-10 -translate-x-1/2 rounded px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-white shadow-md" style={{ backgroundColor: "#e91e63" }}>
                   MAIS POPULAR
                 </div>
                 <CardHeader className="pb-1">
                   <CardTitle className="text-lg text-white md:text-xl">Plano Semestral</CardTitle>
-                  <p className="flex items-baseline gap-0.5">
-                    <span className="text-base font-medium text-white/80">R$</span>
-                    <span className="text-3xl font-bold tracking-tight text-white md:text-4xl">199</span>
-                    <span className="text-sm font-normal text-white/60">/mês</span>
-                  </p>
                 </CardHeader>
                 <CardContent className="space-y-3.5">
                   {[
@@ -590,20 +573,15 @@ export default function Page() {
                     style={{ backgroundColor: "#e91e63" }}
                     asChild
                   >
-                    <Link href="#planos">Garantir Vaga</Link>
+                    <a href="https://wa.me/5585988267557?text=Olá%20Diego!%20Tenho%20interesse%20no%20Plano%20Semestral." target="_blank" rel="noopener noreferrer">Garantir Vaga</a>
                   </Button>
                 </CardContent>
               </Card>
 
-              {/* Plano Anual - card cinza escuro, borda sutil, botão escuro */}
+              {/* Plano Anual */}
               <Card className="border border-white/10 bg-[#1a1a1a] text-white shadow-none">
                 <CardHeader>
                   <CardTitle className="text-white">Plano Anual</CardTitle>
-                  <p className="flex items-baseline gap-0.5">
-                    <span className="text-base font-medium text-white/80">R$</span>
-                    <span className="text-3xl font-bold tracking-tight text-white">159</span>
-                    <span className="text-sm font-normal text-white/60">/mês</span>
-                  </p>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   {[
@@ -623,7 +601,7 @@ export default function Page() {
                     className="w-full border-white/20 bg-white/5 text-white hover:bg-white/10 hover:text-white"
                     asChild
                   >
-                    <Link href="#planos">Assinar Agora</Link>
+                    <a href="https://wa.me/5585988267557?text=Olá%20Diego!%20Tenho%20interesse%20no%20Plano%20Anual." target="_blank" rel="noopener noreferrer">Falar com o Coach</a>
                   </Button>
                 </CardContent>
               </Card>
@@ -638,14 +616,14 @@ export default function Page() {
               Pronto para evoluir sem se machucar?
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-white/80">
-              Junte-se ao time que está redefinindo a performance amadora no Brasil.
+              Pare de treinar no improviso. Clique abaixo e descubra o plano ideal para você.
             </p>
             <Button
               asChild
               size="lg"
               className="mt-8 min-w-[280px] bg-[#e91e63] text-white hover:bg-[#d81b5c]"
             >
-              <Link href="#planos">DESCOBRIR MEU PLANO IDEAL</Link>
+              <a href="https://wa.me/5585988267557?text=Olá%20Diego!%20Quero%20descobrir%20o%20plano%20ideal%20para%20mim." target="_blank" rel="noopener noreferrer">DESCOBRIR MEU PLANO IDEAL</a>
             </Button>
           </div>
         </section>
@@ -699,6 +677,20 @@ export default function Page() {
           </div>
         </div>
       </footer>
+
+      {/* Botão flutuante WhatsApp */}
+      <a
+        href="https://wa.me/5585988267557?text=Olá%20Diego!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20treinamento."
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Falar no WhatsApp"
+        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-transform hover:scale-110"
+        style={{ backgroundColor: "#25D366" }}
+      >
+        <svg viewBox="0 0 24 24" fill="white" className="h-7 w-7" aria-hidden>
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg>
+      </a>
     </div>
   )
 }
