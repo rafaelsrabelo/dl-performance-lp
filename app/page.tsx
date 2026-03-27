@@ -74,7 +74,7 @@ export default function Page() {
               src="/banner.JPEG"
               alt="Corredor em treino"
               fill
-              className="object-cover object-[right_20%]"
+              className="object-cover object-[right_20%] scale-x-[-1]"
               priority
               sizes="100vw"
             />
