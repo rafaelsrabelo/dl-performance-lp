@@ -71,10 +71,10 @@ export default function Page() {
           {/* Imagem de fundo: ocupa 100% da largura e altura da seção */}
           <div className="absolute inset-0 w-full">
             <Image
-              src="/images/hero-secion.png"
+              src="/banner.JPEG"
               alt="Corredor em treino"
               fill
-              className="object-cover object-right"
+              className="object-cover object-[right_20%]"
               priority
               sizes="100vw"
             />
@@ -300,12 +300,12 @@ export default function Page() {
                   key={item.title}
                   className="group overflow-hidden rounded-xl bg-card"
                 >
-                  <div className="relative aspect-[4/3] overflow-hidden">
+                  <div className="relative aspect-[3/4] overflow-hidden">
                     <Image
                       src={item.img}
                       alt={item.title}
                       fill
-                      className="object-cover transition-transform group-hover:scale-105"
+                      className="object-cover object-top transition-transform group-hover:scale-105"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     />
                   </div>
@@ -453,21 +453,21 @@ export default function Page() {
               {[
                 {
                   quote:
-                    "Saí de 35 min nos 5km para sub-25 em 3 meses. Sem dores no joelho que sempre me paravam.",
-                  name: "Ricardo Silva",
-                  avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80",
+                    "Eu jamais imaginava sair dos 5 km. Hoje me sinto mais confiante, motivada e já pensando em bater meu próximo RP.",
+                  name: "Ana Alice",
+                  avatar: "/images/pessoas/ana-alice.jpeg",
                 },
                 {
                   quote:
-                    "Completei minha primeira maratona seguindo o plano do Diego. Estratégia de prova foi o diferencial.",
-                  name: "Amanda Costa",
-                  avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80",
+                    "Eu já tinha tentado de tudo, mas hoje saí de 4 km sofrendo para 9 km com muito mais confiança.",
+                  name: "Cristian",
+                  avatar: "/images/pessoas/cristian.jpeg",
                 },
                 {
                   quote:
-                    "Acompanhamento semanal e planos personalizados. Vale cada centavo.",
-                  name: "Pedro Oliveira",
-                  avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80",
+                    "Nunca tive tanta disciplina. A planilha me anima porque sempre traz um desafio diferente.",
+                  name: "Thâmara",
+                  avatar: "/images/pessoas/thamara.jpeg",
                 },
               ].map((t) => (
                 <Card
@@ -541,7 +541,7 @@ export default function Page() {
                     className="w-full border-white/20 bg-white/5 text-white hover:bg-white/10 hover:text-white"
                     asChild
                   >
-                    <a href="https://wa.me/5585988267557?text=Olá%20Diego!%20Tenho%20interesse%20no%20Plano%20Trimestral." target="_blank" rel="noopener noreferrer">Falar com o Coach</a>
+                    <a href="https://wa.me/5585988267557?text=Olá%20Diego!%20Tenho%20interesse%20no%20Plano%20Trimestral." target="_blank" rel="noopener noreferrer">Garantir Minha Vaga</a>
                   </Button>
                 </CardContent>
               </Card>
@@ -573,7 +573,7 @@ export default function Page() {
                     style={{ backgroundColor: "#e91e63" }}
                     asChild
                   >
-                    <a href="https://wa.me/5585988267557?text=Olá%20Diego!%20Tenho%20interesse%20no%20Plano%20Semestral." target="_blank" rel="noopener noreferrer">Garantir Vaga</a>
+                    <a href="https://wa.me/5585988267557?text=Olá%20Diego!%20Tenho%20interesse%20no%20Plano%20Semestral." target="_blank" rel="noopener noreferrer">Garantir Minha Vaga</a>
                   </Button>
                 </CardContent>
               </Card>
@@ -601,7 +601,7 @@ export default function Page() {
                     className="w-full border-white/20 bg-white/5 text-white hover:bg-white/10 hover:text-white"
                     asChild
                   >
-                    <a href="https://wa.me/5585988267557?text=Olá%20Diego!%20Tenho%20interesse%20no%20Plano%20Anual." target="_blank" rel="noopener noreferrer">Falar com o Coach</a>
+                    <a href="https://wa.me/5585988267557?text=Olá%20Diego!%20Tenho%20interesse%20no%20Plano%20Anual." target="_blank" rel="noopener noreferrer">Garantir Minha Vaga</a>
                   </Button>
                 </CardContent>
               </Card>
