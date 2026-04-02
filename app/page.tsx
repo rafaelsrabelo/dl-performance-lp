@@ -21,6 +21,7 @@ import {
   LayoutList,
   RefreshCw,
   Video,
+  Activity,
 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -167,12 +168,11 @@ export default function Page() {
               Descubra os 7 erros silenciosos que estão sabotando sua evolução — e aumentando seu risco de lesão.
             </p>
 
-            <div className="mb-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 text-left">
+            <div className="mb-10 grid gap-4 sm:grid-cols-1 lg:grid-cols-3 text-left">
               {[
-                { icon: AlertTriangle, text: "Ajustes simples que reduzem impacto" },
-                { icon: LayoutList,   text: "Como organizar sua semana de treino" },
-                { icon: Gauge,        text: "Sinais de alerta que quase ninguém percebe" },
-                { icon: TrendingUp,   text: "Estratégia para aumentar volume sem quebrar" },
+                { icon: LayoutList,    text: "Planejamento precede à intensidade." },
+                { icon: Gauge,         text: "Corra no Ritmo certo." },
+                { icon: AlertTriangle, text: "Aprenda a escutar seu corpo." },
               ].map((item) => (
                 <div
                   key={item.text}
@@ -407,9 +407,9 @@ export default function Page() {
                 <h3 className="text-3xl font-bold text-white md:text-4xl">
                   Diego Lopes
                 </h3>
-                <p className="mt-1 text-white/60 font-medium">Profissional de Educação Física</p>
+                <p className="mt-1 text-white/60 font-medium">Profissional de Educação Física – UFC</p>
                 <p className="mt-4 text-white/90">
-                  Diego construiu uma metodologia de precisão aplicada à corrida, focada em performance sustentável e longevidade no esporte — para atletas amadores que querem evoluir de verdade.
+                  Ex-atleta de CrossFit com 15 anos de experiência em corrida e condicionamento físico. Diego construiu uma metodologia de precisão aplicada à corrida, focada em performance sustentável e longevidade no esporte.
                 </p>
                 <div className="mt-6 flex flex-wrap gap-4">
                   <div className="rounded-lg border border-white/10 bg-white/5 px-5 py-4">
@@ -417,7 +417,7 @@ export default function Page() {
                       98%
                     </p>
                     <p className="mt-0.5 text-sm font-medium text-white">
-                      DOS ALUNOS EVOLUEM PACE
+                      DOS ALUNOS EVOLUEM O PACE
                     </p>
                   </div>
                   <div className="rounded-lg border border-white/10 bg-white/5 px-5 py-4">
@@ -431,9 +431,10 @@ export default function Page() {
                 </div>
                 <ul className="mt-6 space-y-3">
                   {[
-                    "Especialista em Biomecânica",
-                    "Treinador Nível 2 World Athletics",
-                    "Consultor de Equipes de Performance",
+                    "Profissional de Educação Física – UFC",
+                    "Ex-atleta de CrossFit",
+                    "15 anos de experiência em corrida e condicionamento",
+                    "+3.000 alunos transformados",
                   ].map((item) => (
                     <li key={item} className="flex items-center gap-3">
                       <Check
@@ -602,6 +603,73 @@ export default function Page() {
                     asChild
                   >
                     <a href="https://wa.me/5585988267557?text=Olá%20Diego!%20Tenho%20interesse%20no%20Plano%20Anual." target="_blank" rel="noopener noreferrer">Garantir Minha Vaga</a>
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Serviços */}
+        <section
+          id="servicos"
+          className="border-b border-border/40 py-16 md:py-24"
+          style={{ backgroundColor: "#1a1114" }}
+        >
+          <div className="container mx-auto px-4">
+            <div className="mx-auto max-w-2xl text-center mb-12">
+              <h2 className="mb-3 text-3xl font-bold text-white md:text-4xl">
+                Outros Serviços
+              </h2>
+              <p className="text-white/70">
+                Potencialize seus resultados com acompanhamento especializado.
+              </p>
+            </div>
+            <div className="mx-auto grid max-w-3xl gap-8 md:grid-cols-2">
+              {/* Avaliação Biomecânica */}
+              <Card className="flex flex-col border border-white/10 bg-[#1a1a1a] text-white shadow-none">
+                <CardHeader className="items-center justify-items-center text-center">
+                  <div className="mb-3 flex h-20 w-20 items-center justify-center rounded-2xl bg-[#e91e63]/10 text-[#e91e63]">
+                    <Activity className="h-10 w-10" strokeWidth={2} />
+                  </div>
+                  <CardTitle className="text-white text-xl">Avaliação Biomecânica</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-1 text-center">
+                  <p className="text-white/70 text-sm leading-relaxed">
+                    Descubra pontos de melhoria no seu padrão de movimento para evoluir de forma mais segura e eficiente.
+                  </p>
+                </CardContent>
+                <CardContent className="pt-0">
+                  <Button
+                    className="w-full font-semibold text-white hover:opacity-95"
+                    style={{ backgroundColor: "#e91e63" }}
+                    asChild
+                  >
+                    <a href="https://wa.me/5585988267557?text=Olá%20Diego!%20Queria%20saber%20mais%20sobre%20a%20Avaliação%20Biomecânica." target="_blank" rel="noopener noreferrer">Saber Mais</a>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              {/* Treino de Força */}
+              <Card className="flex flex-col border border-white/10 bg-[#1a1a1a] text-white shadow-none">
+                <CardHeader className="items-center justify-items-center text-center">
+                  <div className="mb-3 flex h-20 w-20 items-center justify-center rounded-2xl bg-[#e91e63]/10 text-[#e91e63]">
+                    <Dumbbell className="h-10 w-10" strokeWidth={2} />
+                  </div>
+                  <CardTitle className="text-white text-xl">Treino de Força</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-1 text-center">
+                  <p className="text-white/70 text-sm leading-relaxed">
+                    Fortalecimento específico para te ajudar a prevenir lesões e correr melhor.
+                  </p>
+                </CardContent>
+                <CardContent className="pt-0">
+                  <Button
+                    className="w-full font-semibold text-white hover:opacity-95"
+                    style={{ backgroundColor: "#e91e63" }}
+                    asChild
+                  >
+                    <a href="https://wa.me/5585988267557?text=Olá%20Diego!%20Queria%20saber%20mais%20sobre%20o%20Treino%20de%20Força." target="_blank" rel="noopener noreferrer">Saber Mais</a>
                   </Button>
                 </CardContent>
               </Card>
