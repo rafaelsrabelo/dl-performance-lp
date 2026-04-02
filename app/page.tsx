@@ -341,8 +341,8 @@ export default function Page() {
                   },
                   {
                     icon: RefreshCw,
-                    title: "Integração Garmin/Strava",
-                    desc: "Sincronismo direto para análise de métricas em tempo real.",
+                    title: "Integração com Plataformas",
+                    desc: "Sincronismo direto com Garmin, Strava, Coros, Amazfit e Apple para análise de métricas em tempo real.",
                   },
                   {
                     icon: Users,
