@@ -170,8 +170,8 @@ export default function Page() {
 
             <div className="mb-10 grid gap-4 sm:grid-cols-1 lg:grid-cols-3 text-left">
               {[
-                { icon: LayoutList,    text: "Planejamento precede à intensidade." },
-                { icon: Gauge,         text: "Corra no Ritmo certo." },
+                { icon: LayoutList, text: "Planejamento precede à intensidade." },
+                { icon: Gauge, text: "Corra no Ritmo certo." },
                 { icon: AlertTriangle, text: "Aprenda a escutar seu corpo." },
               ].map((item) => (
                 <div
@@ -343,11 +343,6 @@ export default function Page() {
                     icon: RefreshCw,
                     title: "Integração Garmin/Strava",
                     desc: "Sincronismo direto para análise de métricas em tempo real.",
-                  },
-                  {
-                    icon: Video,
-                    title: "Acompanhamento Técnico em Vídeo",
-                    desc: "Estratégias de prova individualizadas direto no app.",
                   },
                   {
                     icon: Users,
