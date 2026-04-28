@@ -375,7 +375,7 @@ export default function Page() {
               {/* Troque o ID na URL pelo do seu vídeo do YouTube */}
               <iframe
                 className="absolute inset-0 h-full w-full"
-                src="https://www.youtube.com/embed/dKMwYrGmh7Y?rel=0"
+                src="https://www.youtube.com/embed/Yz6I38x1WLI?rel=0"
                 title="DL Performance - Short"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
