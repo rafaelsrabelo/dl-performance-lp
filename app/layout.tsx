@@ -15,14 +15,6 @@ export const metadata: Metadata = {
     description: "Treinamento personalizado de corrida com Diego Lima. Alcance seus objetivos com metodologia profissional e acompanhamento individualizado.",
     url: "https://www.dlperformance.net",
     siteName: "DL Performance",
-    images: [
-      {
-        url: "/banner.JPEG",
-        width: 1200,
-        height: 630,
-        alt: "DL Performance - Assessoria Esportiva de Corrida",
-      },
-    ],
     locale: "pt_BR",
     type: "website",
   },
@@ -30,7 +22,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "DL Performance | Assessoria Esportiva de Corrida",
     description: "Treinamento personalizado de corrida com Diego Lima. Alcance seus objetivos com metodologia profissional e acompanhamento individualizado.",
-    images: ["/banner.JPEG"],
   },
 };
 
