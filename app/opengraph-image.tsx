@@ -30,6 +30,7 @@ export default function Image() {
         {/* Runner photo on the right */}
         <img
           src={bannerSrc}
+          alt=""
           style={{
             position: "absolute",
             right: 0,
@@ -69,6 +70,7 @@ export default function Image() {
         >
           <img
             src={logoSrc}
+            alt=""
             style={{
               width: 120,
               height: 120,

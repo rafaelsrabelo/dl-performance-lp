@@ -4,12 +4,17 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 import { toast } from "sonner"
+import { track } from "@/lib/analytics"
 
 const checklistSchema = z.object({
   email: z
     .string()
+    .trim()
     .min(1, "Informe seu e-mail")
+    .max(254, "E-mail muito longo")
     .refine((v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v), "Informe um e-mail válido"),
+  // Honeypot anti-spam: campo invisível que humanos não preenchem
+  website: z.string().max(0).optional(),
 })
 
 type ChecklistFormData = z.infer<typeof checklistSchema>
@@ -24,10 +29,12 @@ export function ChecklistForm() {
     reset,
   } = useForm<ChecklistFormData>({
     resolver: zodResolver(checklistSchema),
-    defaultValues: { email: "" },
+    defaultValues: { email: "", website: "" },
   })
 
-  async function onSubmit(_data: ChecklistFormData) {
+  async function onSubmit(data: ChecklistFormData) {
+    if (data.website) return // bot preencheu o honeypot
+
     // TODO: integrar com serviço de e-mail marketing (Mailchimp / Brevo / ConvertKit)
     // para armazenar o e-mail coletado antes de disparar o download.
 
@@ -39,6 +46,7 @@ export function ChecklistForm() {
     link.click()
     document.body.removeChild(link)
 
+    track("form_checklist", { label: "Baixar Agora" })
     toast.success("Download iniciado!", {
       description: "Seu checklist está sendo baixado. Bons treinos! 🏃",
     })
@@ -49,7 +57,7 @@ export function ChecklistForm() {
     <form
       onSubmit={handleSubmit(onSubmit)}
       noValidate
-      className="flex w-full flex-col gap-4 rounded-[var(--card-radius)] bg-[#171717] p-[clamp(24px,3.4vw,44px)] text-white shadow-[var(--card-shadow)]"
+      className="relative flex w-full flex-col gap-4 rounded-[var(--card-radius)] bg-[#171717] p-[clamp(24px,3.4vw,44px)] text-white shadow-[var(--card-shadow)]"
     >
       <label
         htmlFor="checklist-email"
@@ -57,6 +65,10 @@ export function ChecklistForm() {
       >
         Seu melhor e-mail
       </label>
+      <div className="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+        <label htmlFor="checklist-website">Não preencha este campo</label>
+        <input id="checklist-website" type="text" tabIndex={-1} autoComplete="off" {...register("website")} />
+      </div>
       <div className="flex flex-col gap-2">
         <input
           id="checklist-email"

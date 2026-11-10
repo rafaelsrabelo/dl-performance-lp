@@ -6,6 +6,7 @@ import { NavLink } from "@/components/nav-link"
 import { BrandBanner } from "@/components/brand-banner"
 import { BiomechIllustration } from "@/components/biomech-illustration"
 import { Arrow, CheckIcon, Dots, Hex, HexDouble } from "@/components/section-decor"
+import { YouTubeEmbed } from "@/components/youtube-embed"
 
 const WHATSAPP = "https://wa.me/5585988267557"
 
@@ -127,21 +128,23 @@ export default function Page() {
               Resultados
             </NavLink>
           </nav>
-          <NavLink href="#planos" className="dl-btn dl-btn-primary dl-btn-compact shrink-0">
+          <NavLink href="#planos" className="dl-btn dl-btn-primary dl-btn-compact shrink-0" data-analytics="cta_header" data-analytics-label="Começar Agora">
             Começar Agora
           </NavLink>
         </div>
       </header>
 
-      <main>
+      <main id="conteudo">
         {/* ================= HERO ================= */}
-        <section className="relative flex min-h-[700px] items-end overflow-hidden bg-[var(--background-dark)] md:min-h-[clamp(700px,54vw,800px)]">
+        <section aria-labelledby="hero-titulo" className="relative flex min-h-[700px] items-end overflow-hidden bg-[var(--background-dark)] md:min-h-[clamp(700px,54vw,800px)]">
           <div className="absolute inset-y-0 right-0 w-full md:w-1/2">
             <Image
               src="/banner.JPEG"
               alt="Corredores da DL Performance em prova de rua"
               fill
               priority
+              fetchPriority="high"
+              quality={65}
               sizes="(min-width: 768px) 50vw, 100vw"
               className="dl-bw object-cover object-[50%_26%]"
             />
@@ -158,8 +161,8 @@ export default function Page() {
           <div className="dl-container relative px-[clamp(20px,5vw,64px)] pt-20 pb-[clamp(40px,6vw,96px)]">
             <div className="flex max-w-[640px] flex-col gap-[clamp(20px,2.4vw,28px)]">
               <span className="dl-eyebrow text-[#D4D4D4]">Performance &amp; Saúde</span>
-              <h1 className="dl-display dl-h1 m-0 text-white">
-                <span className="dl-outline block">Corra com</span>
+              <h1 id="hero-titulo" className="dl-display dl-h1 m-0 text-white">
+                <span className="dl-outline block">Corra com </span>
                 <span className="dl-italic block">
                   Estratégia<span className="text-[var(--color-primary)]">.</span>
                 </span>
@@ -169,13 +172,15 @@ export default function Page() {
                 passos e evoluir com constância na corrida.
               </p>
               <div className="flex max-w-[620px] flex-wrap gap-3">
-                <a href="#planos" className="dl-btn dl-btn-primary flex-[1_1_200px]">
+                <a href="#planos" className="dl-btn dl-btn-primary flex-[1_1_200px]" data-analytics="cta_hero_planos" data-analytics-label="Ver Planos">
                   <span>Ver Planos</span>
                   <Arrow />
                 </a>
                 <a
                   href="#checklist"
                   className="dl-btn dl-btn-secondary flex-[1.4_1_290px] bg-black/35 whitespace-nowrap"
+                  data-analytics="cta_hero_checklist"
+                  data-analytics-label="Baixar Checklist Anti-Lesão"
                 >
                   Baixar Checklist Anti-Lesão
                 </a>
@@ -188,13 +193,13 @@ export default function Page() {
         </section>
 
         {/* ================= CHECKLIST ================= */}
-        <section id="checklist" className="dl-section bg-[var(--surface)] text-[#171717]">
+        <section id="checklist" aria-labelledby="checklist-titulo" className="dl-section bg-[var(--surface)] text-[#171717]">
           <Dots corner="tr" tone="light" />
           <Hex corner="bl" tone="light" />
           <div className="dl-container relative grid items-center gap-[clamp(32px,5vw,80px)] lg:grid-cols-[1.3fr_1fr]">
             <div className="flex min-w-0 flex-col gap-6">
               <span className="dl-eyebrow text-[#525252]">Baixe gratuitamente</span>
-              <h2 className="dl-display dl-h2 m-0 text-[#171717]">
+              <h2 id="checklist-titulo" className="dl-display dl-h2 m-0 text-[#171717]">
                 Checklist Anti-Lesão para Corredores
               </h2>
               <p className="m-0 max-w-[520px] text-lg leading-[1.55] text-[#404040] text-pretty">
@@ -224,11 +229,11 @@ export default function Page() {
         </section>
 
         {/* ================= PROBLEMA ================= */}
-        <section id="o-que-e" className="dl-section bg-[var(--background-dark)]">
+        <section id="o-que-e" aria-labelledby="o-que-e-titulo" className="dl-section bg-[var(--background-dark)]">
           <Dots corner="tl" />
           <div className="dl-container relative flex flex-col gap-[clamp(48px,6vw,88px)]">
             <div className="flex flex-col gap-5">
-              <h2 className="dl-display dl-h2 m-0 max-w-[900px] text-white">
+              <h2 id="o-que-e-titulo" className="dl-display dl-h2 m-0 max-w-[900px] text-white">
                 Como você já deve ter percebido…
               </h2>
               <p className="m-0 text-[19px] leading-normal text-[#A3A3A3]">
@@ -281,11 +286,11 @@ export default function Page() {
         <BrandBanner />
 
         {/* ================= OBJETIVOS ================= */}
-        <section className="dl-section border-t border-[var(--border-dark)] bg-[var(--surface-dark)]">
+        <section id="objetivos" aria-labelledby="objetivos-titulo" className="dl-section border-t border-[var(--border-dark)] bg-[var(--surface-dark)]">
           <Dots corner="tr" />
           <Hex corner="bl" />
           <div className="dl-container relative flex flex-col gap-[clamp(36px,4.6vw,64px)]">
-            <h2 className="dl-display dl-h2 m-0 max-w-[820px] text-white">
+            <h2 id="objetivos-titulo" className="dl-display dl-h2 m-0 max-w-[820px] text-white">
               Cada corpo responde diferente ao treino
             </h2>
             <div className="grid grid-cols-2 gap-[clamp(10px,1.4vw,20px)] lg:grid-cols-4">
@@ -318,10 +323,10 @@ export default function Page() {
         </section>
 
         {/* ================= O QUE VOCÊ RECEBE ================= */}
-        <section id="treino" className="dl-section bg-[var(--surface)] text-[#171717]">
+        <section id="treino" aria-labelledby="treino-titulo" className="dl-section bg-[var(--surface)] text-[#171717]">
           <Dots corner="tl" tone="light" />
           <div className="dl-container relative flex flex-col gap-[clamp(40px,5vw,72px)]">
-            <h2 className="dl-display dl-h2 m-0 max-w-[820px] text-[#171717]">
+            <h2 id="treino-titulo" className="dl-display dl-h2 m-0 max-w-[820px] text-[#171717]">
               O que você recebe ao entrar
             </h2>
             <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
@@ -337,20 +342,12 @@ export default function Page() {
                 </article>
               ))}
             </div>
-            <div className="relative aspect-video w-full overflow-hidden rounded-[var(--card-radius)] border border-[#E5E5E5] bg-[#171717]">
-              <iframe
-                className="absolute inset-0 h-full w-full"
-                src="https://www.youtube.com/embed/Yz6I38x1WLI?rel=0"
-                title="DL Performance - Short"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            </div>
+            <YouTubeEmbed id="Yz6I38x1WLI" title="Acompanhamento da assessoria de corrida online" />
           </div>
         </section>
 
         {/* ================= COACH ================= */}
-        <section className="dl-section bg-[var(--background-dark)]">
+        <section id="coach" aria-labelledby="coach-titulo" className="dl-section bg-[var(--background-dark)]">
           <Dots corner="tr" />
           <Hex corner="bl" />
           <div className="dl-container relative flex flex-wrap items-center gap-[clamp(32px,6vw,96px)]">
@@ -365,7 +362,7 @@ export default function Page() {
             </div>
             <div className="flex min-w-0 flex-[1_1_400px] flex-col gap-6">
               <span className="dl-eyebrow text-[#A3A3A3]">Profissional de Educação Física – UFC</span>
-              <h2 className="dl-display dl-italic m-0 text-[clamp(60px,8.6vw,124px)] leading-[0.86] text-white">
+              <h2 id="coach-titulo" className="dl-display dl-italic m-0 text-[clamp(60px,8.6vw,124px)] leading-[0.86] text-white">
                 Diego Lopes
               </h2>
               <p className="m-0 max-w-[560px] text-[17px] leading-[1.65] text-[#B5B5B5] text-pretty">
@@ -405,13 +402,13 @@ export default function Page() {
         </section>
 
         {/* ================= RESULTADOS ================= */}
-        <section id="resultados" className="dl-section bg-[var(--surface)] text-[#171717]">
+        <section id="resultados" aria-labelledby="resultados-titulo" className="dl-section bg-[var(--surface)] text-[#171717]">
           <Dots corner="tr" tone="light" />
           <Hex corner="bl" tone="light" />
           <div className="dl-container relative flex flex-col gap-[clamp(40px,5vw,72px)]">
             <div className="flex flex-col gap-5">
               <span className="dl-eyebrow text-[#525252]">Resultados</span>
-              <h2 className="dl-display dl-h2 m-0 max-w-[1000px] text-[#171717]">
+              <h2 id="resultados-titulo" className="dl-display dl-h2 m-0 max-w-[1000px] text-[#171717]">
                 &ldquo;Eles não correram mais. Eles correram com estratégia.&rdquo;
               </h2>
             </div>
@@ -445,11 +442,11 @@ export default function Page() {
         </section>
 
         {/* ================= PLANOS ================= */}
-        <section id="planos" className="dl-section bg-[var(--background-dark)]">
+        <section id="planos" aria-labelledby="planos-titulo" className="dl-section bg-[var(--background-dark)]">
           <Dots corner="tl" />
           <div className="dl-container relative flex flex-col gap-[clamp(40px,5vw,72px)]">
             <div className="flex flex-col gap-5">
-              <h2 className="dl-display dl-h2 m-0 text-white">Planos de Acompanhamento</h2>
+              <h2 id="planos-titulo" className="dl-display dl-h2 m-0 text-white">Planos de Acompanhamento</h2>
               <p className="m-0 max-w-[560px] text-[19px] leading-normal text-[#A3A3A3] text-pretty">
                 Investimento em performance, consistência e longevidade no esporte.
               </p>
@@ -508,6 +505,8 @@ export default function Page() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={plan.featured ? "dl-btn dl-btn-primary w-full" : "dl-btn dl-btn-secondary w-full"}
+                    data-analytics="cta_plano"
+                    data-analytics-label={plan.name}
                   >
                     Garantir Minha Vaga
                   </a>
@@ -518,12 +517,12 @@ export default function Page() {
         </section>
 
         {/* ================= OUTROS SERVIÇOS ================= */}
-        <section id="servicos" className="dl-section border-t border-[var(--border-dark)] bg-[var(--surface-dark)]">
+        <section id="servicos" aria-labelledby="servicos-titulo" className="dl-section border-t border-[var(--border-dark)] bg-[var(--surface-dark)]">
           <Dots corner="tr" />
           <Hex corner="bl" />
           <div className="dl-container relative flex flex-col gap-[clamp(40px,5vw,72px)]">
             <div className="flex flex-col gap-5">
-              <h2 className="dl-display dl-h2 m-0 text-white">Outros Serviços</h2>
+              <h2 id="servicos-titulo" className="dl-display dl-h2 m-0 text-white">Outros Serviços</h2>
               <p className="m-0 max-w-[560px] text-[19px] leading-normal text-[#A3A3A3] text-pretty">
                 Potencialize seus resultados com acompanhamento especializado.
               </p>
@@ -543,6 +542,8 @@ export default function Page() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="dl-btn dl-btn-primary mt-2 w-full px-8 sm:w-auto"
+                  data-analytics="cta_avaliacao"
+                  data-analytics-label="Agendar Avaliação"
                 >
                   <span>Agendar Avaliação</span>
                   <Arrow />
@@ -556,11 +557,11 @@ export default function Page() {
         </section>
 
         {/* ================= CTA FINAL ================= */}
-        <section className="dl-section bg-[var(--surface)] py-[clamp(80px,10vw,168px)] text-[#171717]">
+        <section id="cta" aria-labelledby="cta-titulo" className="dl-section bg-[var(--surface)] py-[clamp(80px,10vw,168px)] text-[#171717]">
           <Dots corner="bl" tone="light" />
           <HexDouble />
           <div className="dl-container relative flex flex-col items-start gap-7">
-            <h2 className="dl-display dl-italic m-0 max-w-[900px] text-[clamp(52px,8vw,116px)] leading-[0.88] text-[#171717]">
+            <h2 id="cta-titulo" className="dl-display dl-italic m-0 max-w-[900px] text-[clamp(52px,8vw,116px)] leading-[0.88] text-[#171717]">
               Pronto para evoluir sem se machucar?
             </h2>
             <p className="m-0 max-w-[520px] text-[19px] leading-normal text-[#404040] text-pretty">
@@ -571,6 +572,8 @@ export default function Page() {
               target="_blank"
               rel="noopener noreferrer"
               className="dl-btn dl-btn-primary dl-btn-xl mt-2 w-full sm:w-auto"
+              data-analytics="cta_final"
+              data-analytics-label="Descobrir meu plano ideal"
             >
               <span>Descobrir meu plano ideal</span>
               <Arrow />
@@ -622,6 +625,7 @@ export default function Page() {
               target="_blank"
               rel="noopener noreferrer"
               className="flex min-h-11 items-center text-white transition-colors hover:text-[var(--color-primary)]"
+              data-analytics="whatsapp_footer"
             >
               WhatsApp
             </a>
@@ -648,6 +652,7 @@ export default function Page() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Falar no WhatsApp"
+        data-analytics="whatsapp_flutuante"
         className="fixed right-6 bottom-6 z-50 flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-transform hover:scale-110"
         style={{ backgroundColor: "#25D366" }}
       >
