@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-const ALT = "DL Performance — Evolua além dos seus limites"
+const ALT = "DL Performance: Evolua além dos seus limites"
 
 /**
  * Banner da marca, largura total e sem padding.

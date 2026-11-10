@@ -78,22 +78,34 @@ const TESTIMONIALS = [
 
 const PLANS = [
   {
-    name: "Plano Trimestral",
+    name: "Assessoria de Corrida",
     featured: false,
-    features: ["Planilha via App", "Suporte em 24h", "Ajustes Quinzenais"],
-    href: `${WHATSAPP}?text=Olá%20Diego!%20Tenho%20interesse%20no%20Plano%20Trimestral.`,
+    description:
+      "Para quem deseja evoluir na corrida com um planejamento individualizado e acompanhamento contínuo.",
+    features: [
+      "Planejamento individualizado",
+      "Treinos enviados para o relógio",
+      "Ajustes constantes conforme evolução",
+      "Feedbacks dos treinos",
+      "Suporte via App e WhatsApp",
+    ],
+    cta: "Quero Evoluir na Corrida",
+    href: `${WHATSAPP}?text=Olá%20Diego!%20Tenho%20interesse%20na%20Assessoria%20de%20Corrida.`,
   },
   {
-    name: "Plano Semestral",
+    name: "Acompanhamento Completo",
     featured: true,
-    features: ["Planilha via App", "Suporte Prioritário", "Ajustes Semanais", "Desconto em Parceiros"],
-    href: `${WHATSAPP}?text=Olá%20Diego!%20Tenho%20interesse%20no%20Plano%20Semestral.`,
-  },
-  {
-    name: "Plano Anual",
-    featured: false,
-    features: ["Tudo do Semestral", "Análise Biomecânica", "Camiseta Oficial DL"],
-    href: `${WHATSAPP}?text=Olá%20Diego!%20Tenho%20interesse%20no%20Plano%20Anual.`,
+    description:
+      "Para quem busca um acompanhamento mais completo, integrando fortalecimento e exercícios cardiorrespiratórios de acordo com seus objetivos e rotina.",
+    features: [
+      "Planejamento individualizado do fortalecimento",
+      "Planejamento completo dos seus treinos",
+      "Organização da rotina semanal",
+      "Ajustes constantes conforme evolução",
+      "Suporte via App e WhatsApp",
+    ],
+    cta: "Quero um Acompanhamento Completo",
+    href: `${WHATSAPP}?text=Olá%20Diego!%20Tenho%20interesse%20no%20Acompanhamento%20Completo.`,
   },
 ]
 
@@ -103,7 +115,7 @@ export default function Page() {
       {/* ================= HEADER ================= */}
       <header className="sticky top-0 z-50 border-b border-[var(--border-dark)] bg-[var(--background-dark)]">
         <div className="dl-container flex items-center justify-between gap-6 px-[clamp(20px,5vw,64px)] py-2.5">
-          <Link href="/" aria-label="DL Performance — início" className="flex shrink-0">
+          <Link href="/" aria-label="DL Performance, início" className="flex shrink-0">
             <Image
               src="/logo_h_white.png"
               alt="DL Performance"
@@ -203,7 +215,7 @@ export default function Page() {
                 Checklist Anti-Lesão para Corredores
               </h2>
               <p className="m-0 max-w-[520px] text-lg leading-[1.55] text-[#404040] text-pretty">
-                Descubra os 7 erros silenciosos que estão sabotando sua evolução — e aumentando seu
+                Descubra os 7 erros silenciosos que estão sabotando sua evolução e aumentando seu
                 risco de lesão.
               </p>
               <ol className="m-0 mt-2 flex list-none flex-col border-t border-[#E5E5E5] p-0">
@@ -274,7 +286,7 @@ export default function Page() {
             <blockquote className="m-0 flex gap-[clamp(16px,2.4vw,32px)] rounded-[var(--card-radius)] bg-[var(--surface-dark)] p-[clamp(24px,3.4vw,48px)]">
               <span aria-hidden="true" className="w-1 shrink-0 -skew-x-[8deg] bg-[var(--color-primary)]" />
               <p className="m-0 max-w-[940px] text-[clamp(20px,2.3vw,30px)] leading-[1.4] font-medium text-white text-pretty">
-                &ldquo;O problema não é você. Cada corpo responde diferente ao estímulo — rotina
+                &ldquo;O problema não é você. Cada corpo responde diferente ao estímulo: rotina
                 diferente, histórico diferente, tempo disponível diferente. Então por que o treino
                 seria igual?&rdquo;
               </p>
@@ -361,7 +373,7 @@ export default function Page() {
               />
             </div>
             <div className="flex min-w-0 flex-[1_1_400px] flex-col gap-6">
-              <span className="dl-eyebrow text-[#A3A3A3]">Profissional de Educação Física – UFC</span>
+              <span className="dl-eyebrow text-[#A3A3A3]">Profissional de Educação Física pela UFC</span>
               <h2 id="coach-titulo" className="dl-display dl-italic m-0 text-[clamp(60px,8.6vw,124px)] leading-[0.86] text-white">
                 Diego Lopes
               </h2>
@@ -451,7 +463,7 @@ export default function Page() {
                 Investimento em performance, consistência e longevidade no esporte.
               </p>
             </div>
-            <div className="grid items-stretch gap-5 lg:grid-cols-[1fr_1.15fr_1fr]">
+            <div className="grid items-stretch gap-5 md:grid-cols-2">
               {PLANS.map((plan) => (
                 <article
                   key={plan.name}
@@ -465,7 +477,7 @@ export default function Page() {
                     <div className="flex h-7">
                       {plan.featured && (
                         <span className="inline-flex items-center bg-[var(--color-primary)] px-3 text-[11px] font-semibold tracking-[0.16em] uppercase text-white">
-                          Mais popular
+                          Mais completo
                         </span>
                       )}
                     </div>
@@ -478,6 +490,15 @@ export default function Page() {
                     >
                       {plan.name}
                     </h3>
+                    <p
+                      className={
+                        plan.featured
+                          ? "m-0 text-base leading-[1.55] text-[#404040] text-pretty"
+                          : "m-0 text-base leading-[1.55] text-[#A3A3A3] text-pretty"
+                      }
+                    >
+                      {plan.description}
+                    </p>
                   </div>
                   <ul
                     className={
@@ -508,11 +529,14 @@ export default function Page() {
                     data-analytics="cta_plano"
                     data-analytics-label={plan.name}
                   >
-                    Garantir Minha Vaga
+                    {plan.cta}
                   </a>
                 </article>
               ))}
             </div>
+            <p className="m-0 text-sm leading-normal text-[#A3A3A3]">
+              Contratação disponível nas modalidades mensal e trimestral.
+            </p>
           </div>
         </section>
 
@@ -587,7 +611,7 @@ export default function Page() {
         <div className="dl-container flex flex-wrap items-center justify-between gap-8">
           {/* No mobile, logo e seta ficam na mesma linha; no desktop viram itens independentes */}
           <div className="flex w-full items-center justify-between lg:contents">
-            <Link href="/" aria-label="DL Performance — início" className="flex">
+            <Link href="/" aria-label="DL Performance, início" className="flex">
               <Image
                 src="/logo_h_white.png"
                 alt="DL Performance"
