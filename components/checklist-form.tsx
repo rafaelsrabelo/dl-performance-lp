@@ -4,9 +4,6 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 import { toast } from "sonner"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 
 const checklistSchema = z.object({
   email: z
@@ -51,35 +48,42 @@ export function ChecklistForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="mx-auto flex max-w-xl flex-col items-center gap-6 sm:flex-row sm:gap-3"
+      noValidate
+      className="flex w-full flex-col gap-4 rounded-[var(--card-radius)] bg-[#171717] p-[clamp(24px,3.4vw,44px)] text-white shadow-[var(--card-shadow)]"
     >
-      <div className="w-full flex-1 space-y-2 sm:max-w-sm">
-        <Label htmlFor="checklist-email" className="sr-only">
-          Seu melhor e-mail
-        </Label>
-        <Input
+      <label
+        htmlFor="checklist-email"
+        className="dl-display text-[28px] leading-none font-bold"
+      >
+        Seu melhor e-mail
+      </label>
+      <div className="flex flex-col gap-2">
+        <input
           id="checklist-email"
           type="email"
-          placeholder="Seu melhor e-mail"
-          className="h-11 border-white/20 bg-white/5 text-white placeholder:text-white/50 focus-visible:ring-[var(--dl-pink)]"
+          autoComplete="email"
+          placeholder="voce@email.com"
+          className="box-border h-14 w-full min-w-0 rounded-[var(--button-radius)] border border-[#5C5C5C] bg-[var(--background-dark)] px-4 text-base text-white outline-none placeholder:text-[#8A8A8A] focus-visible:border-white focus-visible:ring-2 focus-visible:ring-white/40 aria-invalid:border-[var(--color-primary)]"
           {...register("email")}
           aria-invalid={!!errors.email}
+          aria-describedby={errors.email ? "checklist-email-error" : undefined}
         />
         {errors.email && (
-          <p className="text-left text-sm text-red-400" role="alert">
+          <p id="checklist-email-error" className="text-sm text-[#FF8FB4]" role="alert">
             {errors.email.message}
           </p>
         )}
       </div>
-      <Button
+      <button
         type="submit"
-        size="lg"
         disabled={isSubmitting}
-        className="w-full bg-dl-pink font-bold text-white sm:w-auto"
-        style={{ backgroundColor: "#e91e63" }}
+        className="dl-btn dl-btn-primary w-full"
       >
         {isSubmitting ? "Baixando..." : "Baixar Agora"}
-      </Button>
+      </button>
+      <p className="m-0 text-[13px] leading-relaxed text-[#A3A3A3]">
+        Prometemos não enviar spam. Apenas conteúdo de alta performance.
+      </p>
     </form>
   )
 }

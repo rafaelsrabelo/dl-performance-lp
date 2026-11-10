@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono } from "next/font/google"
+import { Barlow_Condensed, Geist, Geist_Mono } from "next/font/google"
 import { Toaster } from "sonner"
 import type { Metadata } from "next"
 
@@ -35,6 +35,13 @@ const fontMono = Geist_Mono({
   variable: "--font-mono",
 })
 
+const fontDisplay = Barlow_Condensed({
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
+  style: ["normal", "italic"],
+  variable: "--font-display",
+})
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -44,7 +51,7 @@ export default function RootLayout({
     <html
       lang="pt-BR"
       suppressHydrationWarning
-      className={cn("antialiased dark", fontMono.variable, "font-sans", fontSans.variable)}
+      className={cn("antialiased dark", fontMono.variable, fontDisplay.variable, "font-sans", fontSans.variable)}
     >
       <body>
         <ThemeProvider>{children}</ThemeProvider>

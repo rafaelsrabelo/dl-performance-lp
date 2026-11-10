@@ -33,8 +33,25 @@ html {
     --chart-4: oklch(0.488 0.243 264.376);
     --chart-5: oklch(0.424 0.199 265.638);
     --radius: 0.625rem;
-    --dl-pink: #e91e63;
-    --dl-pink-hover: #d81b5c;
+    /* DL Performance design tokens (redesign) */
+    --color-primary: #D81B5C;
+    --color-primary-hover: #B9164D;
+    --background-dark: #111111;
+    --surface: #F5F5F5;
+    --surface-dark: #1C1C1C;
+    --foreground-muted: #777777;
+    --foreground-inverse: #FFFFFF;
+    --border-dark: #333333;
+    --text-muted-on-dark: #A3A3A3;
+    --text-muted-on-light: #404040;
+    --button-radius: 8px;
+    --card-radius: 12px;
+    --card-shadow: 0 8px 24px rgba(0,0,0,.08);
+    --shadow-sm: 0 2px 8px rgba(0,0,0,.05);
+    --shadow-md: 0 8px 24px rgba(0,0,0,.08);
+    --shadow-lg: 0 16px 40px rgba(0,0,0,.12);
+    --dl-pink: var(--color-primary);
+    --dl-pink-hover: var(--color-primary-hover);
     --sidebar: oklch(0.985 0 0);
     --sidebar-foreground: oklch(0.145 0 0);
     --sidebar-primary: oklch(0.205 0 0);
@@ -81,6 +98,7 @@ html {
 
 @theme inline {
     --font-sans: var(--font-sans);
+    --font-display: var(--font-display);
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -149,4 +167,151 @@ a.bg-dl-pink:hover {
   html {
     @apply font-sans;
   }
+}
+
+/* ============================================================
+   DL Performance — design system (redesign)
+   ============================================================ */
+
+/* Layout */
+.dl-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+.dl-section {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(72px, 9vw, 144px);
+  padding-inline: clamp(20px, 5vw, 64px);
+}
+
+/* Display type: Barlow Condensed, caixa alta */
+.dl-display {
+  font-family: var(--font-display), "Arial Narrow", sans-serif;
+  text-transform: uppercase;
+  font-weight: 800;
+  line-height: 0.94;
+  text-wrap: balance;
+}
+.dl-h1 { font-size: clamp(66px, 9.2vw, 132px); line-height: 0.86; letter-spacing: -0.01em; }
+.dl-h2 { font-size: clamp(42px, 6vw, 84px); }
+.dl-h3 { font-size: clamp(28px, 2.8vw, 48px); line-height: 1; font-weight: 700; }
+.dl-italic { font-style: italic; }
+.dl-num {
+  font-family: var(--font-display), "Arial Narrow", sans-serif;
+  font-weight: 700;
+}
+.dl-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--stroke, #ffffff);
+}
+
+/* Eyebrow: Geist 12px / 600 / caixa alta, quadradinho inclinado na cor primária */
+.dl-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.dl-eyebrow::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 9px;
+  height: 9px;
+  background: var(--color-primary);
+  transform: skewX(-14deg);
+}
+
+/* Botões */
+.dl-btn {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 58px;
+  padding: 0 24px;
+  border-radius: var(--button-radius);
+  border: 1px solid transparent;
+  font-family: var(--font-display), "Arial Narrow", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color .15s ease, border-color .15s ease, color .15s ease;
+}
+.dl-btn:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+.dl-btn-primary {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--foreground-inverse);
+}
+.dl-btn-primary:hover { background: var(--color-primary-hover); border-color: var(--color-primary-hover); }
+.dl-btn-secondary {
+  background: transparent;
+  border-color: #ffffff;
+  color: #ffffff;
+}
+.dl-btn-secondary:hover { background: rgba(255,255,255,.1); }
+.dl-btn-compact { min-height: 44px; padding: 0 20px; font-size: 17px; }
+.dl-btn-xl { min-height: 64px; padding: 0 36px; font-size: 22px; }
+.dl-btn:disabled { opacity: .6; cursor: not-allowed; }
+
+/* Texturas decorativas */
+.dl-dots {
+  position: absolute;
+  width: clamp(240px, 42vw, 620px);
+  height: clamp(220px, 30vw, 440px);
+  background-image: radial-gradient(circle, var(--dot, #ffffff) 1.3px, transparent 1.9px);
+  background-size: 14px 14px;
+  opacity: var(--dot-o, 0.17);
+  -webkit-mask-image: linear-gradient(var(--dot-angle, 225deg), #000 0%, transparent 72%);
+  mask-image: linear-gradient(var(--dot-angle, 225deg), #000 0%, transparent 72%);
+  pointer-events: none;
+}
+.dl-dots-light { --dot: #171717; --dot-o: 0.14; }
+.dl-dots-tr { top: 0; right: 0; --dot-angle: 225deg; }
+.dl-dots-tl { top: 0; left: 0; --dot-angle: 135deg; }
+.dl-dots-bl { bottom: 0; left: 0; --dot-angle: 45deg; }
+.dl-dots-br { bottom: 0; right: 0; --dot-angle: 315deg; }
+
+.dl-hex {
+  position: absolute;
+  width: clamp(260px, 34vw, 520px);
+  pointer-events: none;
+}
+.dl-hex-bl { left: -70px; bottom: -110px; }
+.dl-hex-br { right: -70px; bottom: -110px; }
+
+/* Grade fina (painel da avaliação biomecânica) */
+.dl-grid-bg {
+  background-color: var(--surface-dark);
+  background-image:
+    linear-gradient(#2c2c2c 1px, transparent 1px),
+    linear-gradient(90deg, #2c2c2c 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: center;
+}
+
+/* Foto em preto e branco */
+.dl-bw { filter: grayscale(1) contrast(1.15); }
+
+/* Chanfros da foto do coach */
+.dl-chamfer {
+  clip-path: polygon(0 0, calc(100% - 44px) 0, 100% 44px, 100% 100%, 44px 100%, 0 calc(100% - 44px));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dl-btn { transition: none; }
 }

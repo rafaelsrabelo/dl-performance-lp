@@ -1,378 +1,343 @@
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import {
-  Check,
-  Star,
-  Dumbbell,
-  TrendingUp,
-  MessageCircle,
-  AlertTriangle,
-  Gauge,
-  Copy,
-  Users,
-  Brain,
-  LayoutList,
-  RefreshCw,
-  Video,
-  Activity,
-} from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+
 import { ChecklistForm } from "@/components/checklist-form"
 import { NavLink } from "@/components/nav-link"
+import { BrandBanner } from "@/components/brand-banner"
+import { BiomechIllustration } from "@/components/biomech-illustration"
+import { Arrow, CheckIcon, Dots, Hex, HexDouble } from "@/components/section-decor"
+
+const WHATSAPP = "https://wa.me/5585988267557"
+
+const PROBLEMS = [
+  {
+    title: "Copiando planilhas",
+    description: "Planilhas genéricas da internet não respeitam sua fisiologia e rotina únicas.",
+  },
+  {
+    title: "Treino genérico",
+    description: "Sem adaptação para o seu histórico, cansaço acumulado e tempo disponível.",
+  },
+  {
+    title: "Correndo no feeling",
+    description: "Sem métricas claras, você corre demais quando devia descansar.",
+  },
+  {
+    title: "Volume sem estratégia",
+    description: "Aumentar quilometragem por conta própria é o caminho direto para a lesão.",
+  },
+]
+
+const GOALS = [
+  { title: "Primeiros 5km", subtitle: "Construa sua base", img: "/images/IMG_2164.JPEG" },
+  { title: "Baixar pace", subtitle: "Treinos de velocidade", img: "/images/IMG_2180.JPEG" },
+  { title: "Voltar sem dor", subtitle: "Foco em reabilitação", img: "/images/IMG_2165.JPEG" },
+  { title: "Meia ou Maratona", subtitle: "Estratégia de volume", img: "/images/IMG_2175.JPEG" },
+]
+
+const BENEFITS = [
+  {
+    title: "Planilha 100% Individualizada",
+    desc: "Construída para sua rotina, nível atual e histórico de lesão.",
+  },
+  {
+    title: "Integração com Plataformas",
+    desc: "Sincronismo direto com Garmin, Strava, Coros, Amazfit e Apple para análise de métricas em tempo real.",
+  },
+  {
+    title: "Grupo Exclusivo de Alunos",
+    desc: "Comunidade no WhatsApp para troca de experiências e motivação.",
+  },
+  {
+    title: "Suporte Direto com o Coach",
+    desc: "Ajustes contínuos e acompanhamento técnico direto com Diego.",
+  },
+]
+
+const TESTIMONIALS = [
+  {
+    quote:
+      "Eu jamais imaginava sair dos 5 km. Hoje me sinto mais confiante, motivada e já pensando em bater meu próximo RP.",
+    name: "Ana Alice",
+    avatar: "/images/pessoas/ana-alice.jpeg",
+  },
+  {
+    quote:
+      "Eu já tinha tentado de tudo, mas hoje saí de 4 km sofrendo para 9 km com muito mais confiança.",
+    name: "Cristian",
+    avatar: "/images/pessoas/cristian.jpeg",
+  },
+  {
+    quote:
+      "Nunca tive tanta disciplina. A planilha me anima porque sempre traz um desafio diferente.",
+    name: "Thâmara",
+    avatar: "/images/pessoas/thamara.jpeg",
+  },
+]
+
+const PLANS = [
+  {
+    name: "Plano Trimestral",
+    featured: false,
+    features: ["Planilha via App", "Suporte em 24h", "Ajustes Quinzenais"],
+    href: `${WHATSAPP}?text=Olá%20Diego!%20Tenho%20interesse%20no%20Plano%20Trimestral.`,
+  },
+  {
+    name: "Plano Semestral",
+    featured: true,
+    features: ["Planilha via App", "Suporte Prioritário", "Ajustes Semanais", "Desconto em Parceiros"],
+    href: `${WHATSAPP}?text=Olá%20Diego!%20Tenho%20interesse%20no%20Plano%20Semestral.`,
+  },
+  {
+    name: "Plano Anual",
+    featured: false,
+    features: ["Tudo do Semestral", "Análise Biomecânica", "Camiseta Oficial DL"],
+    href: `${WHATSAPP}?text=Olá%20Diego!%20Tenho%20interesse%20no%20Plano%20Anual.`,
+  },
+]
 
 export default function Page() {
   return (
-    <div className="min-h-svh bg-background text-foreground">
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto flex h-16 items-center justify-between px-4">
-          <Link href="/" className="flex items-center gap-2">
+    <div id="top" className="min-h-svh bg-[var(--background-dark)] font-sans text-white antialiased">
+      {/* ================= HEADER ================= */}
+      <header className="sticky top-0 z-50 border-b border-[var(--border-dark)] bg-[var(--background-dark)]">
+        <div className="dl-container flex items-center justify-between gap-6 px-[clamp(20px,5vw,64px)] py-2.5">
+          <Link href="/" aria-label="DL Performance — início" className="flex shrink-0">
             <Image
-              src="/images/Logotipos%20DLLogo%20DL.png"
+              src="/logo_h_white.png"
               alt="DL Performance"
-              width={280}
-              height={36}
-              className="h-14 w-auto object-contain sm:h-16 md:h-14 lg:h-20"
+              width={1200}
+              height={272}
               priority
+              sizes="200px"
+              className="block h-8 w-auto md:h-[42px]"
             />
           </Link>
-          <nav className="hidden items-center gap-8 md:flex">
-            <NavLink href="#o-que-e" className="text-sm font-medium text-foreground/90 hover:text-primary">
+          <nav
+            aria-label="Principal"
+            className="hidden items-center gap-12 text-[13px] font-medium tracking-[0.14em] uppercase min-[760px]:flex"
+          >
+            <NavLink href="#o-que-e" className="text-[#D4D4D4] transition-colors hover:text-white">
               O que é
             </NavLink>
-            <NavLink href="#planos" className="text-sm font-medium text-foreground/90 hover:text-primary">
+            <NavLink href="#planos" className="text-[#D4D4D4] transition-colors hover:text-white">
               Planos
             </NavLink>
-            <NavLink href="#resultados" className="text-sm font-medium text-foreground/90 hover:text-primary">
+            <NavLink href="#resultados" className="text-[#D4D4D4] transition-colors hover:text-white">
               Resultados
             </NavLink>
           </nav>
-          <Button
-            asChild
-            size="lg"
-            className="bg-dl-pink text-white border-0"
-            style={{ backgroundColor: "#e91e63" }}
-          >
-            <NavLink href="#planos" className="bg-dl-pink text-white font-bold" style={{ backgroundColor: "#e91e63" }}>Começar Agora</NavLink>
-          </Button>
+          <NavLink href="#planos" className="dl-btn dl-btn-primary dl-btn-compact shrink-0">
+            Começar Agora
+          </NavLink>
         </div>
       </header>
 
       <main>
-        {/* Hero - imagem em toda a largura (full width), conteúdo à esquerda */}
-        <section className="relative min-h-[calc(100vh-4rem)] w-full overflow-hidden border-b border-border/40">
-          {/* Imagem de fundo: ocupa 100% da largura e altura da seção */}
-          <div className="absolute inset-0 w-full">
+        {/* ================= HERO ================= */}
+        <section className="relative flex min-h-[700px] items-end overflow-hidden bg-[var(--background-dark)] md:min-h-[clamp(700px,54vw,800px)]">
+          <div className="absolute inset-y-0 right-0 w-full md:w-1/2">
             <Image
               src="/banner.JPEG"
-              alt="Corredor em treino"
+              alt="Corredores da DL Performance em prova de rua"
               fill
-              className="object-cover object-[right_20%] scale-x-[-1]"
               priority
-              sizes="100vw"
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="dl-bw object-cover object-[50%_26%]"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 hidden bg-linear-to-r from-[var(--background-dark)] to-transparent to-40% md:block"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-x-0 bottom-0 h-[84%] bg-linear-to-t from-[var(--background-dark)] via-[rgba(17,17,17,0.9)] via-58% to-transparent md:h-[28%]"
             />
           </div>
-          {/* Overlay escuro à esquerda para legibilidade do texto */}
-          <div
-            className="absolute inset-0 z-[1] w-full bg-gradient-to-r from-background via-background/95 to-transparent md:max-w-[55%]"
-            aria-hidden
-          />
-          {/* Conteúdo sobre a imagem */}
-          <div className="relative z-10 flex min-h-[calc(100vh-4rem)] flex-col justify-center px-6 py-16 md:max-w-[55%] md:px-10 md:py-20 lg:px-16">
-            <Badge
-              className="mb-5 w-fit border-0 bg-dl-pink px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white"
-              style={{ backgroundColor: "#e91e63" }}
-            >
-              PERFORMANCE & SAÚDE
-            </Badge>
-            <h1 className="leading-[1.1] text-foreground">
-              <span className="block text-4xl font-black tracking-tight md:text-5xl lg:text-6xl">
-                Corra com
-              </span>
-              <span
-                className="mt-0.5 block text-5xl font-black tracking-tight text-dl-pink md:text-6xl lg:text-7xl"
-                style={{ color: "#e91e63" }}
-              >
-                Estratégia.
-              </span>
-            </h1>
-            <p className="mt-5 max-w-lg text-base font-normal leading-relaxed text-white/90">
-              Evolua no seu ritmo e sem lesões. Na DL Performance te ajudamos
-              a dar os primeiros passos e evoluir com constância na corrida.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Button
-                asChild
-                size="lg"
-                className="min-w-[220px] border-0 bg-dl-pink text-base font-bold text-white"
-                style={{ backgroundColor: "#e91e63" }}
-              >
-                <Link href="#checklist" className="bg-dl-pink font-bold text-white" style={{ backgroundColor: "#e91e63" }}>Baixar Checklist Anti-Lesão</Link>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="border border-white/30 bg-transparent font-bold text-white hover:bg-white/10"
-              >
-                <Link href="#planos">Ver Planos</Link>
-              </Button>
-            </div>
-            <div className="mt-8 flex items-center gap-3 text-sm font-normal text-white/80">
-              <div className="flex -space-x-2">
-                {["/images/pessoas/IMG_0575.JPG", "/images/pessoas/IMG_2168.JPG", "/images/pessoas/IMG_2170.JPG", "/images/pessoas/IMG_4650.JPG", "/images/pessoas/IMG_6943.JPG"].map((src) => (
-                  <div
-                    key={src}
-                    className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-background ring-2 ring-background"
-                  >
-                    <Image
-                      src={src}
-                      alt="Corredor DL Performance"
-                      fill
-                      className="object-cover"
-                      sizes="40px"
-                    />
-                  </div>
-                ))}
-              </div>
-              <span>+1.500 corredores evoluindo.</span>
-            </div>
-          </div>
-        </section>
 
-        {/* Checklist Anti-Lesão para Corredores */}
-        <section
-          id="checklist"
-          className="border-b border-border/40 py-16 md:py-24"
-          style={{ backgroundColor: "#0b0b0b" }}
-        >
-          <div className="container mx-auto max-w-4xl px-4 text-center">
-            <Badge
-              className="mb-4 w-fit border-0 bg-dl-pink px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white mx-auto"
-              style={{ backgroundColor: "#e91e63" }}
-            >
-              Baixe Gratuitamente
-            </Badge>
-            <h2 className="mb-3 text-3xl font-bold text-white md:text-4xl">
-              Checklist Anti-Lesão para Corredores
-            </h2>
-            <p className="mb-8 text-white/90 max-w-2xl mx-auto">
-              Descubra os 7 erros silenciosos que estão sabotando sua evolução — e aumentando seu risco de lesão.
-            </p>
-
-            <div className="mb-10 grid gap-4 sm:grid-cols-1 lg:grid-cols-3 text-left">
-              {[
-                { icon: LayoutList, text: "Planejamento precede à intensidade." },
-                { icon: Gauge, text: "Corra no Ritmo certo." },
-                { icon: AlertTriangle, text: "Aprenda a escutar seu corpo." },
-              ].map((item) => (
-                <div
-                  key={item.text}
-                  className="flex items-start gap-3 rounded-xl border border-white/10 bg-[#301a24] px-5 py-5 shadow-inner"
+          <div className="dl-container relative px-[clamp(20px,5vw,64px)] pt-20 pb-[clamp(40px,6vw,96px)]">
+            <div className="flex max-w-[640px] flex-col gap-[clamp(20px,2.4vw,28px)]">
+              <span className="dl-eyebrow text-[#D4D4D4]">Performance &amp; Saúde</span>
+              <h1 className="dl-display dl-h1 m-0 text-white">
+                <span className="dl-outline block">Corra com</span>
+                <span className="dl-italic block">
+                  Estratégia<span className="text-[var(--color-primary)]">.</span>
+                </span>
+              </h1>
+              <p className="m-0 max-w-[500px] text-[clamp(16px,1.4vw,19px)] leading-[1.55] text-[#D4D4D4] text-pretty">
+                Evolua no seu ritmo e sem lesões. Na DL Performance te ajudamos a dar os primeiros
+                passos e evoluir com constância na corrida.
+              </p>
+              <div className="flex max-w-[620px] flex-wrap gap-3">
+                <a href="#planos" className="dl-btn dl-btn-primary flex-[1_1_200px]">
+                  <span>Ver Planos</span>
+                  <Arrow />
+                </a>
+                <a
+                  href="#checklist"
+                  className="dl-btn dl-btn-secondary flex-[1.4_1_290px] bg-black/35 whitespace-nowrap"
                 >
-                  <item.icon className="h-6 w-6 shrink-0 mt-0.5 text-[#e91e63]" aria-hidden />
-                  <span className="text-sm font-medium leading-snug text-white">{item.text}</span>
-                </div>
-              ))}
+                  Baixar Checklist Anti-Lesão
+                </a>
+              </div>
+              <p className="m-0 text-sm font-medium tracking-[0.04em] text-[#A3A3A3]">
+                +1.500 corredores evoluindo.
+              </p>
             </div>
-
-            <ChecklistForm />
-
-            <p className="mt-6 text-xs text-white/60">
-              Prometemos não enviar spam. Apenas conteúdo de alta performance.
-            </p>
           </div>
         </section>
 
-        {/* Por que a maioria dos corredores não evolui? */}
-        <section
-          id="o-que-e"
-          className="border-b border-gray-200 bg-white py-16 md:py-24"
-        >
-          <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-2xl text-center">
-              <h2 className="mb-3 text-3xl font-bold text-gray-900 md:text-4xl">
+        {/* ================= CHECKLIST ================= */}
+        <section id="checklist" className="dl-section bg-[var(--surface)] text-[#171717]">
+          <Dots corner="tr" tone="light" />
+          <Hex corner="bl" tone="light" />
+          <div className="dl-container relative grid items-center gap-[clamp(32px,5vw,80px)] lg:grid-cols-[1.3fr_1fr]">
+            <div className="flex min-w-0 flex-col gap-6">
+              <span className="dl-eyebrow text-[#525252]">Baixe gratuitamente</span>
+              <h2 className="dl-display dl-h2 m-0 text-[#171717]">
+                Checklist Anti-Lesão para Corredores
+              </h2>
+              <p className="m-0 max-w-[520px] text-lg leading-[1.55] text-[#404040] text-pretty">
+                Descubra os 7 erros silenciosos que estão sabotando sua evolução — e aumentando seu
+                risco de lesão.
+              </p>
+              <ol className="m-0 mt-2 flex list-none flex-col border-t border-[#E5E5E5] p-0">
+                {[
+                  "Planejamento precede à intensidade.",
+                  "Corra no Ritmo certo.",
+                  "Aprenda a escutar seu corpo.",
+                ].map((item, i) => (
+                  <li
+                    key={item}
+                    className="flex items-baseline gap-5 border-b border-[#E5E5E5] py-4 text-[17px] font-medium text-[#171717]"
+                  >
+                    <span className="dl-num text-lg text-[var(--color-primary)]">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+            <ChecklistForm />
+          </div>
+        </section>
+
+        {/* ================= PROBLEMA ================= */}
+        <section id="o-que-e" className="dl-section bg-[var(--background-dark)]">
+          <Dots corner="tl" />
+          <div className="dl-container relative flex flex-col gap-[clamp(48px,6vw,88px)]">
+            <div className="flex flex-col gap-5">
+              <h2 className="dl-display dl-h2 m-0 max-w-[900px] text-white">
                 Como você já deve ter percebido…
               </h2>
-              <p className="text-gray-600">
+              <p className="m-0 text-[19px] leading-normal text-[#A3A3A3]">
                 A maioria das pessoas treina assim:
               </p>
             </div>
-            <div className="mx-auto mt-12 grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {[
-                {
-                  icon: Copy,
-                  title: "Copiando planilhas",
-                  description:
-                    "Planilhas genéricas da internet não respeitam sua fisiologia e rotina únicas.",
-                },
-                {
-                  icon: Users,
-                  title: "Treino genérico",
-                  description:
-                    "Sem adaptação para o seu histórico, cansaço acumulado e tempo disponível.",
-                },
-                {
-                  icon: Brain,
-                  title: "Correndo no feeling",
-                  description:
-                    "Sem métricas claras, você corre demais quando devia descansar.",
-                },
-                {
-                  icon: TrendingUp,
-                  title: "Volume sem estratégia",
-                  description:
-                    "Aumentar quilometragem por conta própria é o caminho direto para a lesão.",
-                },
-              ].map((item) => (
-                <Card
+
+            <ol className="m-0 flex list-none flex-col border-t border-[var(--border-dark)] p-0">
+              {PROBLEMS.map((item, i) => (
+                <li
                   key={item.title}
-                  className="border border-gray-100 bg-white shadow-md"
+                  className="grid grid-cols-[48px_1fr] items-baseline gap-x-6 gap-y-2 border-b border-[var(--border-dark)] py-[clamp(20px,2.4vw,30px)] md:grid-cols-[48px_1fr_2fr]"
                 >
-                  <CardHeader>
-                    <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-lg text-[#e91e63]">
-                      <item.icon className="h-5 w-5" strokeWidth={2} />
-                    </div>
-                    <CardTitle className="text-gray-900">
-                      {item.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-gray-600">
-                      {item.description}
-                    </CardDescription>
-                  </CardContent>
-                </Card>
+                  <span className="dl-num text-xl text-[#8A8A8A]">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="dl-display dl-h3 m-0 text-[clamp(28px,2.8vw,38px)] text-white">
+                    {item.title}
+                  </h3>
+                  <p className="col-start-2 m-0 text-[17px] leading-[1.55] text-[#A3A3A3] md:col-start-auto">
+                    {item.description}
+                  </p>
+                </li>
               ))}
-            </div>
-            <div className="mx-auto mt-12 max-w-2xl text-center space-y-3 text-gray-800">
-              <p className="text-lg font-semibold">E o resultado é sempre o mesmo:</p>
-              <div className="flex flex-wrap justify-center gap-3">
-                {["⚠️ Dor", "⚠️ Estagnação", "⚠️ Pace travado", "⚠️ Desmotivação"].map((item) => (
-                  <span key={item} className="rounded-full border border-gray-200 bg-gray-50 px-4 py-1.5 text-sm font-medium text-gray-700">{item}</span>
-                ))}
-              </div>
-              <p className="pt-4 italic text-gray-700">
-                &ldquo;O problema não é você. Cada corpo responde diferente ao estímulo — rotina diferente, histórico diferente, tempo disponível diferente. Então por que o treino seria igual?&rdquo;
+            </ol>
+
+            <div className="flex flex-col gap-5">
+              <p className="m-0 text-[19px] leading-normal text-[#A3A3A3]">
+                E o resultado é sempre o mesmo:
               </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Cada corpo responde diferente ao treino */}
-        <section className="border-b border-border/40 bg-background py-16 md:py-24">
-          <div className="container mx-auto px-4">
-            <h2 className="mb-12 text-center text-3xl font-bold text-white md:text-4xl">
-              Cada corpo responde diferente ao treino
-            </h2>
-            <div className="mx-auto grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {[
-                {
-                  title: "Primeiros 5km",
-                  subtitle: "Construa sua base",
-                  img: "/images/IMG_2164.JPEG",
-                },
-                {
-                  title: "Baixar pace",
-                  subtitle: "Treinos de velocidade",
-                  img: "/images/IMG_2180.JPEG",
-                },
-                {
-                  title: "Voltar sem dor",
-                  subtitle: "Foco em reabilitação",
-                  img: "/images/IMG_2165.JPEG",
-                },
-                {
-                  title: "Meia ou Maratona",
-                  subtitle: "Estratégia de volume",
-                  img: "/images/IMG_2175.JPEG",
-                },
-              ].map((item) => (
-                <div
-                  key={item.title}
-                  className="group overflow-hidden rounded-xl bg-card"
-                >
-                  <div className="relative aspect-[3/4] overflow-hidden">
-                    <Image
-                      src={item.img}
-                      alt={item.title}
-                      fill
-                      className="object-cover object-top transition-transform group-hover:scale-105"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    />
-                  </div>
-                  <div className="border-t border-border/50 p-4">
-                    <h3 className="font-semibold text-white">{item.title}</h3>
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      {item.subtitle}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* O que você recebe no treinamento + vídeo YouTube */}
-        <section
-          id="treino"
-          className="border-b border-border/40 py-16 md:py-24"
-          style={{ backgroundColor: "#1a1114" }}
-        >
-          <div className="container mx-auto grid items-center gap-12 px-4 md:grid-cols-2 md:gap-16">
-            <div>
-              <h2 className="mb-8 text-3xl font-bold text-white md:text-4xl">
-                O que você recebe ao entrar
-              </h2>
-              <ul className="space-y-6">
-                {[
-                  {
-                    icon: LayoutList,
-                    title: "Planilha 100% Individualizada",
-                    desc: "Construída para sua rotina, nível atual e histórico de lesão.",
-                  },
-                  {
-                    icon: RefreshCw,
-                    title: "Integração com Plataformas",
-                    desc: "Sincronismo direto com Garmin, Strava, Coros, Amazfit e Apple para análise de métricas em tempo real.",
-                  },
-                  {
-                    icon: Users,
-                    title: "Grupo Exclusivo de Alunos",
-                    desc: "Comunidade no WhatsApp para troca de experiências e motivação.",
-                  },
-                  {
-                    icon: MessageCircle,
-                    title: "Suporte Direto com o Coach",
-                    desc: "Ajustes contínuos e acompanhamento técnico direto com Diego.",
-                  },
-                ].map((item) => (
-                  <li key={item.title} className="flex gap-4">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center text-[#e91e63]">
-                      <item.icon className="h-6 w-6" strokeWidth={2} />
-                    </span>
-                    <div>
-                      <p className="font-semibold text-white">
-                        {item.title}
-                      </p>
-                      <p className="mt-0.5 text-sm text-white/70">
-                        {item.desc}
-                      </p>
-                    </div>
-                  </li>
+              <ul className="dl-display dl-italic dl-outline m-0 flex list-none flex-wrap gap-x-[clamp(20px,3.4vw,48px)] gap-y-1 p-0 text-[clamp(44px,6.4vw,92px)] leading-[0.98] [--stroke:#8A8A8A]">
+                {["Dor", "Estagnação", "Pace travado", "Desmotivação"].map((w) => (
+                  <li key={w}>{w}</li>
                 ))}
               </ul>
             </div>
-            <div className="relative aspect-video overflow-hidden rounded-xl bg-muted shadow-xl">
-              {/* Troque o ID na URL pelo do seu vídeo do YouTube */}
+
+            <blockquote className="m-0 flex gap-[clamp(16px,2.4vw,32px)] rounded-[var(--card-radius)] bg-[var(--surface-dark)] p-[clamp(24px,3.4vw,48px)]">
+              <span aria-hidden="true" className="w-1 shrink-0 -skew-x-[8deg] bg-[var(--color-primary)]" />
+              <p className="m-0 max-w-[940px] text-[clamp(20px,2.3vw,30px)] leading-[1.4] font-medium text-white text-pretty">
+                &ldquo;O problema não é você. Cada corpo responde diferente ao estímulo — rotina
+                diferente, histórico diferente, tempo disponível diferente. Então por que o treino
+                seria igual?&rdquo;
+              </p>
+            </blockquote>
+          </div>
+        </section>
+
+        {/* ================= BANNER DA MARCA ================= */}
+        <BrandBanner />
+
+        {/* ================= OBJETIVOS ================= */}
+        <section className="dl-section border-t border-[var(--border-dark)] bg-[var(--surface-dark)]">
+          <Dots corner="tr" />
+          <Hex corner="bl" />
+          <div className="dl-container relative flex flex-col gap-[clamp(36px,4.6vw,64px)]">
+            <h2 className="dl-display dl-h2 m-0 max-w-[820px] text-white">
+              Cada corpo responde diferente ao treino
+            </h2>
+            <div className="grid grid-cols-2 gap-[clamp(10px,1.4vw,20px)] lg:grid-cols-4">
+              {GOALS.map((g) => (
+                <article
+                  key={g.title}
+                  className="relative aspect-[3/4] overflow-hidden rounded-[var(--card-radius)] bg-[#161616]"
+                >
+                  <Image
+                    src={g.img}
+                    alt=""
+                    fill
+                    sizes="(min-width: 1024px) 25vw, 50vw"
+                    className="dl-bw object-cover"
+                  />
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0 bg-linear-to-t from-black/90 to-black/10 to-60%"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 flex flex-col gap-1.5 p-[clamp(14px,1.8vw,24px)]">
+                    <h3 className="dl-display m-0 text-[clamp(26px,2.6vw,36px)] leading-[0.95] text-white">
+                      {g.title}
+                    </h3>
+                    <p className="m-0 text-sm leading-snug text-[#D4D4D4]">{g.subtitle}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ================= O QUE VOCÊ RECEBE ================= */}
+        <section id="treino" className="dl-section bg-[var(--surface)] text-[#171717]">
+          <Dots corner="tl" tone="light" />
+          <div className="dl-container relative flex flex-col gap-[clamp(40px,5vw,72px)]">
+            <h2 className="dl-display dl-h2 m-0 max-w-[820px] text-[#171717]">
+              O que você recebe ao entrar
+            </h2>
+            <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+              {BENEFITS.map((b, i) => (
+                <article key={b.title} className="flex flex-col gap-3.5 border-t-[3px] border-[#171717] pt-5">
+                  <span className="dl-num text-lg text-[var(--color-primary)]">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="dl-display m-0 text-[30px] leading-none font-bold text-[#171717]">
+                    {b.title}
+                  </h3>
+                  <p className="m-0 text-base leading-[1.55] text-[#404040]">{b.desc}</p>
+                </article>
+              ))}
+            </div>
+            <div className="relative aspect-video w-full overflow-hidden rounded-[var(--card-radius)] border border-[#E5E5E5] bg-[#171717]">
               <iframe
                 className="absolute inset-0 h-full w-full"
                 src="https://www.youtube.com/embed/Yz6I38x1WLI?rel=0"
@@ -384,359 +349,295 @@ export default function Page() {
           </div>
         </section>
 
-        {/* Instructor + Depoimentos */}
-        <section id="resultados" className="border-b border-border/40 bg-background py-16 md:py-24">
-          <div className="container mx-auto px-4">
-            <div className="mx-auto grid max-w-5xl gap-12 md:grid-cols-[auto_1fr]">
-              {/* Foto: bordas arredondadas e borda branca fina */}
-              <div className="relative h-72 w-56 overflow-hidden rounded-lg border-2 border-white/20 sm:h-80 sm:w-64">
-                <Image
-                  src="/images/foto diego.png"
-                  alt="Diego Lopes"
-                  fill
-                  className="object-cover object-top"
-                  sizes="256px"
-                />
-              </div>
-              <div>
-                <h3 className="text-3xl font-bold text-white md:text-4xl">
-                  Diego Lopes
-                </h3>
-                <p className="mt-1 text-white/60 font-medium">Profissional de Educação Física – UFC</p>
-                <p className="mt-4 text-white/90">
-                  Ex-atleta de CrossFit com 15 anos de experiência em corrida e condicionamento físico. Diego construiu uma metodologia de precisão aplicada à corrida, focada em performance sustentável e longevidade no esporte.
-                </p>
-                <div className="mt-6 flex flex-wrap gap-4">
-                  <div className="rounded-lg border border-white/10 bg-white/5 px-5 py-4">
-                    <p className="text-2xl font-bold text-[#e91e63] md:text-3xl">
-                      98%
-                    </p>
-                    <p className="mt-0.5 text-sm font-medium text-white">
-                      DOS ALUNOS EVOLUEM O PACE
-                    </p>
-                  </div>
-                  <div className="rounded-lg border border-white/10 bg-white/5 px-5 py-4">
-                    <p className="text-2xl font-bold text-[#e91e63] md:text-3xl">
-                      +3.000
-                    </p>
-                    <p className="mt-0.5 text-sm font-medium text-white">
-                      ALUNOS TRANSFORMADOS
-                    </p>
-                  </div>
-                </div>
-                <ul className="mt-6 space-y-3">
-                  {[
-                    "Profissional de Educação Física – UFC",
-                    "Ex-atleta de CrossFit",
-                    "15 anos de experiência em corrida e condicionamento",
-                    "+3.000 alunos transformados",
-                  ].map((item) => (
-                    <li key={item} className="flex items-center gap-3">
-                      <Check
-                        className="h-5 w-5 shrink-0 text-[#e91e63]"
-                        strokeWidth={2.5}
-                      />
-                      <span className="text-white">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+        {/* ================= COACH ================= */}
+        <section className="dl-section bg-[var(--background-dark)]">
+          <Dots corner="tr" />
+          <Hex corner="bl" />
+          <div className="dl-container relative flex flex-wrap items-center gap-[clamp(32px,6vw,96px)]">
+            <div className="relative mx-auto aspect-[256/349] w-full max-w-[380px] flex-[0_1_380px]">
+              <Image
+                src="/images/foto diego.png"
+                alt="Diego Lopes, coach da DL Performance"
+                fill
+                sizes="(min-width: 768px) 380px, 100vw"
+                className="dl-bw dl-chamfer object-cover object-top"
+              />
             </div>
-            <p className="mx-auto mt-16 max-w-2xl text-center text-2xl font-bold md:text-3xl">
-              &ldquo;Eles não correram mais. Eles correram com estratégia.&rdquo;
-            </p>
-            <div className="mx-auto mt-12 grid max-w-4xl gap-6 sm:grid-cols-3">
-              {[
-                {
-                  quote:
-                    "Eu jamais imaginava sair dos 5 km. Hoje me sinto mais confiante, motivada e já pensando em bater meu próximo RP.",
-                  name: "Ana Alice",
-                  avatar: "/images/pessoas/ana-alice.jpeg",
-                },
-                {
-                  quote:
-                    "Eu já tinha tentado de tudo, mas hoje saí de 4 km sofrendo para 9 km com muito mais confiança.",
-                  name: "Cristian",
-                  avatar: "/images/pessoas/cristian.jpeg",
-                },
-                {
-                  quote:
-                    "Nunca tive tanta disciplina. A planilha me anima porque sempre traz um desafio diferente.",
-                  name: "Thâmara",
-                  avatar: "/images/pessoas/thamara.jpeg",
-                },
-              ].map((t) => (
-                <Card
+            <div className="flex min-w-0 flex-[1_1_400px] flex-col gap-6">
+              <span className="dl-eyebrow text-[#A3A3A3]">Profissional de Educação Física – UFC</span>
+              <h2 className="dl-display dl-italic m-0 text-[clamp(60px,8.6vw,124px)] leading-[0.86] text-white">
+                Diego Lopes
+              </h2>
+              <p className="m-0 max-w-[560px] text-[17px] leading-[1.65] text-[#B5B5B5] text-pretty">
+                Ex-atleta de CrossFit com 15 anos de experiência em corrida e condicionamento físico.
+                Diego construiu uma metodologia de precisão aplicada à corrida, focada em performance
+                sustentável e longevidade no esporte.
+              </p>
+              <div className="flex flex-wrap gap-[clamp(24px,4vw,56px)] border-y border-[var(--border-dark)] py-6">
+                {[
+                  { value: "98%", label: "Dos alunos evoluem o pace" },
+                  { value: "+3.000", label: "Alunos transformados" },
+                ].map((s) => (
+                  <div key={s.value} className="flex flex-col gap-1.5">
+                    <span className="dl-display text-[clamp(56px,6vw,84px)] leading-[0.9] text-[var(--color-primary)]">
+                      {s.value}
+                    </span>
+                    <span className="text-xs font-semibold tracking-[0.16em] uppercase text-[#A3A3A3]">
+                      {s.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <ul className="m-0 flex list-none flex-wrap gap-2.5 p-0">
+                {["Ex-atleta de CrossFit", "15 anos de experiência em corrida e condicionamento"].map(
+                  (c) => (
+                    <li
+                      key={c}
+                      className="rounded-[var(--button-radius)] border border-[var(--border-dark)] px-3.5 py-2 text-sm text-[#E5E5E5]"
+                    >
+                      {c}
+                    </li>
+                  )
+                )}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* ================= RESULTADOS ================= */}
+        <section id="resultados" className="dl-section bg-[var(--surface)] text-[#171717]">
+          <Dots corner="tr" tone="light" />
+          <Hex corner="bl" tone="light" />
+          <div className="dl-container relative flex flex-col gap-[clamp(40px,5vw,72px)]">
+            <div className="flex flex-col gap-5">
+              <span className="dl-eyebrow text-[#525252]">Resultados</span>
+              <h2 className="dl-display dl-h2 m-0 max-w-[1000px] text-[#171717]">
+                &ldquo;Eles não correram mais. Eles correram com estratégia.&rdquo;
+              </h2>
+            </div>
+            <div className="grid gap-10 md:grid-cols-3">
+              {TESTIMONIALS.map((t) => (
+                <figure
                   key={t.name}
-                  className="border-border/50 bg-card text-card-foreground"
+                  className="m-0 flex flex-col justify-between gap-7 border-t-[3px] border-[var(--color-primary)] pt-6"
                 >
-                  <CardContent className="pt-6">
-                    <div className="mb-4 flex gap-1 text-[#e91e63]">
-                      {[1, 2, 3, 4, 5].map((i) => (
-                        <Star
-                          key={i}
-                          className="h-4 w-4 fill-current"
-                          aria-hidden
-                        />
-                      ))}
-                    </div>
-                    <p className="text-sm text-muted-foreground">&ldquo;{t.quote}&rdquo;</p>
-                    <div className="mt-4 flex items-center gap-3">
-                      <div className="relative h-10 w-10 overflow-hidden rounded-full bg-muted">
-                        <Image
-                          src={t.avatar}
-                          alt=""
-                          fill
-                          className="object-cover"
-                          sizes="40px"
-                        />
-                      </div>
-                      <span className="font-medium">{t.name}</span>
-                    </div>
-                  </CardContent>
-                </Card>
+                  <blockquote className="m-0 text-xl leading-normal font-medium text-[#171717] text-pretty">
+                    &ldquo;{t.quote}&rdquo;
+                  </blockquote>
+                  <figcaption className="flex items-center gap-3.5">
+                    <span className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full bg-[#E5E5E5]">
+                      <Image
+                        src={t.avatar}
+                        alt=""
+                        fill
+                        sizes="48px"
+                        className="dl-bw object-cover"
+                      />
+                    </span>
+                    <span className="dl-display text-2xl leading-none font-bold tracking-[0.02em] text-[#171717]">
+                      {t.name}
+                    </span>
+                  </figcaption>
+                </figure>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Pricing - estilo da referência: fundo preto, cards cinza escuro, borda sutil, destaque rosa no plano popular */}
-        <section
-          id="planos"
-          className="overflow-visible border-b border-border/40 py-16 md:py-24"
-          style={{ backgroundColor: "#0b0b0b" }}
-        >
-          <div className="container mx-auto overflow-visible px-4">
-            <div className="mx-auto max-w-2xl text-center mb-4">
-              <h2 className="mb-3 text-3xl font-bold text-white md:text-4xl">
-                Planos de Acompanhamento
-              </h2>
-              <p className="text-white/70">
+        {/* ================= PLANOS ================= */}
+        <section id="planos" className="dl-section bg-[var(--background-dark)]">
+          <Dots corner="tl" />
+          <div className="dl-container relative flex flex-col gap-[clamp(40px,5vw,72px)]">
+            <div className="flex flex-col gap-5">
+              <h2 className="dl-display dl-h2 m-0 text-white">Planos de Acompanhamento</h2>
+              <p className="m-0 max-w-[560px] text-[19px] leading-normal text-[#A3A3A3] text-pretty">
                 Investimento em performance, consistência e longevidade no esporte.
               </p>
             </div>
-            <div className="mx-auto grid max-w-4xl gap-6 pt-10 md:grid-cols-3">
-              {/* Plano Trimestral */}
-              <Card className="border border-white/10 bg-[#1a1a1a] text-white shadow-none">
-                <CardHeader>
-                  <CardTitle className="text-white">Plano Trimestral</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  {["Planilha via App", "Suporte em 24h", "Ajustes Quinzenais"].map(
-                    (f) => (
-                      <div key={f} className="flex items-center gap-2">
-                        <Check className="h-4 w-4 shrink-0 text-[#e91e63]" strokeWidth={2.5} />
-                        <span className="text-sm text-white/90">{f}</span>
-                      </div>
-                    )
-                  )}
-                </CardContent>
-                <CardContent className="pt-0">
-                  <Button
-                    variant="outline"
-                    className="w-full border-white/20 bg-white/5 text-white hover:bg-white/10 hover:text-white"
-                    asChild
-                  >
-                    <a href="https://wa.me/5585988267557?text=Olá%20Diego!%20Tenho%20interesse%20no%20Plano%20Trimestral." target="_blank" rel="noopener noreferrer">Garantir Minha Vaga</a>
-                  </Button>
-                </CardContent>
-              </Card>
-
-              {/* Plano Semestral - destaque */}
-              <Card className="relative z-10 overflow-visible border-2 border-[#e91e63] bg-[#1a1a1a] py-6 text-white shadow-none md:scale-105 md:py-8">
-                <div className="absolute -top-5 left-1/2 z-10 -translate-x-1/2 rounded px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-white shadow-md" style={{ backgroundColor: "#e91e63" }}>
-                  MAIS POPULAR
-                </div>
-                <CardHeader className="pb-1">
-                  <CardTitle className="text-lg text-white md:text-xl">Plano Semestral</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3.5">
-                  {[
-                    "Planilha via App",
-                    "Suporte Prioritário",
-                    "Ajustes Semanais",
-                    "Desconto em Parceiros",
-                  ].map((f) => (
-                    <div key={f} className="flex items-center gap-2">
-                      <Check className="h-4 w-4 shrink-0 text-[#e91e63] md:h-5 md:w-5" strokeWidth={2.5} />
-                      <span className="text-sm text-white/90 md:text-base">{f}</span>
+            <div className="grid items-stretch gap-5 lg:grid-cols-[1fr_1.15fr_1fr]">
+              {PLANS.map((plan) => (
+                <article
+                  key={plan.name}
+                  className={
+                    plan.featured
+                      ? "flex min-w-0 flex-col gap-7 rounded-[var(--card-radius)] border border-white border-t-[6px] border-t-[var(--color-primary)] bg-white p-[clamp(24px,3vw,40px)] text-[#171717]"
+                      : "flex min-w-0 flex-col gap-7 rounded-[var(--card-radius)] border border-[var(--border-dark)] bg-[var(--surface-dark)] p-[clamp(24px,3vw,40px)] text-white"
+                  }
+                >
+                  <div className="flex flex-col gap-3.5">
+                    <div className="flex h-7">
+                      {plan.featured && (
+                        <span className="inline-flex items-center bg-[var(--color-primary)] px-3 text-[11px] font-semibold tracking-[0.16em] uppercase text-white">
+                          Mais popular
+                        </span>
+                      )}
                     </div>
-                  ))}
-                </CardContent>
-                <CardContent className="pt-0">
-                  <Button
-                    className="h-11 w-full font-semibold text-white hover:opacity-95 md:h-12 md:text-base"
-                    style={{ backgroundColor: "#e91e63" }}
-                    asChild
+                    <h3
+                      className={
+                        plan.featured
+                          ? "dl-display dl-italic m-0 text-[clamp(40px,4vw,54px)] leading-[0.93]"
+                          : "dl-display m-0 text-[clamp(36px,3.4vw,46px)] leading-[0.95]"
+                      }
+                    >
+                      {plan.name}
+                    </h3>
+                  </div>
+                  <ul
+                    className={
+                      plan.featured
+                        ? "m-0 flex grow list-none flex-col border-t border-[#E5E5E5] p-0"
+                        : "m-0 flex grow list-none flex-col border-t border-[var(--border-dark)] p-0"
+                    }
                   >
-                    <a href="https://wa.me/5585988267557?text=Olá%20Diego!%20Tenho%20interesse%20no%20Plano%20Semestral." target="_blank" rel="noopener noreferrer">Garantir Minha Vaga</a>
-                  </Button>
-                </CardContent>
-              </Card>
-
-              {/* Plano Anual */}
-              <Card className="border border-white/10 bg-[#1a1a1a] text-white shadow-none">
-                <CardHeader>
-                  <CardTitle className="text-white">Plano Anual</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  {[
-                    "Tudo do Semestral",
-                    "Análise Biomecânica",
-                    "Camiseta Oficial DL",
-                  ].map((f) => (
-                    <div key={f} className="flex items-center gap-2">
-                      <Check className="h-4 w-4 shrink-0 text-[#e91e63]" strokeWidth={2.5} />
-                      <span className="text-sm text-white/90">{f}</span>
-                    </div>
-                  ))}
-                </CardContent>
-                <CardContent className="pt-0">
-                  <Button
-                    variant="outline"
-                    className="w-full border-white/20 bg-white/5 text-white hover:bg-white/10 hover:text-white"
-                    asChild
+                    {plan.features.map((f) => (
+                      <li
+                        key={f}
+                        className={
+                          plan.featured
+                            ? "flex items-start gap-3.5 border-b border-[#E5E5E5] py-3.5 text-base leading-snug font-medium text-[#171717]"
+                            : "flex items-start gap-3.5 border-b border-[var(--border-dark)] py-3.5 text-base leading-snug text-[#EDEDED]"
+                        }
+                      >
+                        <CheckIcon className={plan.featured ? "text-[#171717]" : "text-[var(--color-primary)]"} />
+                        <span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <a
+                    href={plan.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={plan.featured ? "dl-btn dl-btn-primary w-full" : "dl-btn dl-btn-secondary w-full"}
                   >
-                    <a href="https://wa.me/5585988267557?text=Olá%20Diego!%20Tenho%20interesse%20no%20Plano%20Anual." target="_blank" rel="noopener noreferrer">Garantir Minha Vaga</a>
-                  </Button>
-                </CardContent>
-              </Card>
+                    Garantir Minha Vaga
+                  </a>
+                </article>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Serviços */}
-        <section
-          id="servicos"
-          className="border-b border-border/40 py-16 md:py-24"
-          style={{ backgroundColor: "#1a1114" }}
-        >
-          <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-2xl text-center mb-12">
-              <h2 className="mb-3 text-3xl font-bold text-white md:text-4xl">
-                Outros Serviços
-              </h2>
-              <p className="text-white/70">
+        {/* ================= OUTROS SERVIÇOS ================= */}
+        <section id="servicos" className="dl-section border-t border-[var(--border-dark)] bg-[var(--surface-dark)]">
+          <Dots corner="tr" />
+          <Hex corner="bl" />
+          <div className="dl-container relative flex flex-col gap-[clamp(40px,5vw,72px)]">
+            <div className="flex flex-col gap-5">
+              <h2 className="dl-display dl-h2 m-0 text-white">Outros Serviços</h2>
+              <p className="m-0 max-w-[560px] text-[19px] leading-normal text-[#A3A3A3] text-pretty">
                 Potencialize seus resultados com acompanhamento especializado.
               </p>
             </div>
-            <div className="mx-auto grid max-w-3xl gap-8 md:grid-cols-2">
-              {/* Avaliação Biomecânica */}
-              <Card className="flex flex-col border border-white/10 bg-[#1a1a1a] text-white shadow-none">
-                <CardHeader className="items-center justify-items-center text-center">
-                  <div className="mb-3 flex h-20 w-20 items-center justify-center rounded-2xl bg-[#e91e63]/10 text-[#e91e63]">
-                    <Activity className="h-10 w-10" strokeWidth={2} />
-                  </div>
-                  <CardTitle className="text-white text-xl">Avaliação Biomecânica</CardTitle>
-                </CardHeader>
-                <CardContent className="flex-1 text-center">
-                  <p className="text-white/70 text-sm leading-relaxed">
-                    Descubra pontos de melhoria no seu padrão de movimento para evoluir de forma mais segura e eficiente.
-                  </p>
-                </CardContent>
-                <CardContent className="pt-0">
-                  <Button
-                    className="w-full font-semibold text-white hover:opacity-95"
-                    style={{ backgroundColor: "#e91e63" }}
-                    asChild
-                  >
-                    <a href="https://wa.me/5585988267557?text=Olá%20Diego!%20Queria%20saber%20mais%20sobre%20a%20Avaliação%20Biomecânica." target="_blank" rel="noopener noreferrer">Saber Mais</a>
-                  </Button>
-                </CardContent>
-              </Card>
-
-              {/* Treino de Força */}
-              <Card className="flex flex-col border border-white/10 bg-[#1a1a1a] text-white shadow-none">
-                <CardHeader className="items-center justify-items-center text-center">
-                  <div className="mb-3 flex h-20 w-20 items-center justify-center rounded-2xl bg-[#e91e63]/10 text-[#e91e63]">
-                    <Dumbbell className="h-10 w-10" strokeWidth={2} />
-                  </div>
-                  <CardTitle className="text-white text-xl">Treino de Força</CardTitle>
-                </CardHeader>
-                <CardContent className="flex-1 text-center">
-                  <p className="text-white/70 text-sm leading-relaxed">
-                    Fortalecimento específico para te ajudar a prevenir lesões e correr melhor.
-                  </p>
-                </CardContent>
-                <CardContent className="pt-0">
-                  <Button
-                    className="w-full font-semibold text-white hover:opacity-95"
-                    style={{ backgroundColor: "#e91e63" }}
-                    asChild
-                  >
-                    <a href="https://wa.me/5585988267557?text=Olá%20Diego!%20Queria%20saber%20mais%20sobre%20o%20Treino%20de%20Força." target="_blank" rel="noopener noreferrer">Saber Mais</a>
-                  </Button>
-                </CardContent>
-              </Card>
-            </div>
+            <article className="grid overflow-hidden rounded-[var(--card-radius)] border border-[var(--border-dark)] bg-[var(--background-dark)] md:grid-cols-2">
+              <div className="flex min-w-0 flex-col items-start justify-center gap-[22px] p-[clamp(24px,4.6vw,64px)]">
+                <span className="dl-eyebrow text-[#A3A3A3]">Serviço especializado</span>
+                <h3 className="dl-display m-0 text-[clamp(40px,4.6vw,64px)] leading-[0.93] text-white">
+                  Avaliação Biomecânica Presencial
+                </h3>
+                <p className="m-0 max-w-[460px] text-[17px] leading-[1.6] text-[#B5B5B5] text-pretty">
+                  Análise completa da corrida e do movimento para identificar limitações, prevenir
+                  lesões e direcionar um plano de intervenção individualizado.
+                </p>
+                <a
+                  href={`${WHATSAPP}?text=Olá%20Diego!%20Queria%20saber%20mais%20sobre%20a%20Avaliação%20Biomecânica.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="dl-btn dl-btn-primary mt-2 w-full px-8 sm:w-auto"
+                >
+                  <span>Agendar Avaliação</span>
+                  <Arrow />
+                </a>
+              </div>
+              <div className="dl-grid-bg flex min-h-[360px] items-center justify-center p-6">
+                <BiomechIllustration className="h-auto w-full max-w-[460px]" />
+              </div>
+            </article>
           </div>
         </section>
 
-        {/* Final CTA */}
-        <section className="border-b border-border/40 bg-primary/10 py-16 md:py-24">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+        {/* ================= CTA FINAL ================= */}
+        <section className="dl-section bg-[var(--surface)] py-[clamp(80px,10vw,168px)] text-[#171717]">
+          <Dots corner="bl" tone="light" />
+          <HexDouble />
+          <div className="dl-container relative flex flex-col items-start gap-7">
+            <h2 className="dl-display dl-italic m-0 max-w-[900px] text-[clamp(52px,8vw,116px)] leading-[0.88] text-[#171717]">
               Pronto para evoluir sem se machucar?
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-white/80">
+            <p className="m-0 max-w-[520px] text-[19px] leading-normal text-[#404040] text-pretty">
               Pare de treinar no improviso. Clique abaixo e descubra o plano ideal para você.
             </p>
-            <Button
-              asChild
-              size="lg"
-              className="mt-8 min-w-[280px] bg-[#e91e63] text-white hover:bg-[#d81b5c]"
+            <a
+              href={`${WHATSAPP}?text=Olá%20Diego!%20Quero%20descobrir%20o%20plano%20ideal%20para%20mim.`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="dl-btn dl-btn-primary dl-btn-xl mt-2 w-full sm:w-auto"
             >
-              <a href="https://wa.me/5585988267557?text=Olá%20Diego!%20Quero%20descobrir%20o%20plano%20ideal%20para%20mim." target="_blank" rel="noopener noreferrer">DESCOBRIR MEU PLANO IDEAL</a>
-            </Button>
+              <span>Descobrir meu plano ideal</span>
+              <Arrow />
+            </a>
           </div>
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-border/40 py-8">
-        <div className="container mx-auto flex flex-col items-center justify-between gap-6 px-4 sm:flex-row">
-          <Link href="/" className="flex items-center">
-            <Image
-              src="/images/Logotipos%20DLLogo%20DL.png"
-              alt="DL Performance"
-              width={120}
-              height={28}
-              className="h-20 w-auto object-contain"
-            />
-          </Link>
-          <div className="flex items-center gap-6 text-sm text-white/80">
+      {/* ================= FOOTER ================= */}
+      <footer className="border-t border-[var(--border-dark)] bg-[var(--background-dark)] px-[clamp(20px,5vw,64px)] pt-[clamp(40px,5vw,64px)] pb-[calc(clamp(40px,5vw,64px)+56px)] lg:pb-[clamp(40px,5vw,64px)]">
+        <div className="dl-container flex flex-wrap items-center justify-between gap-8">
+          {/* No mobile, logo e seta ficam na mesma linha; no desktop viram itens independentes */}
+          <div className="flex w-full items-center justify-between lg:contents">
+            <Link href="/" aria-label="DL Performance — início" className="flex">
+              <Image
+                src="/logo_h_white.png"
+                alt="DL Performance"
+                width={1200}
+                height={272}
+                sizes="220px"
+                className="block h-12 w-auto"
+              />
+            </Link>
+            <NavLink
+              href="#top"
+              aria-label="Voltar ao topo"
+              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[var(--button-radius)] border border-[var(--border-dark)] text-white transition-colors hover:border-white hover:bg-white/10 lg:order-last"
+            >
+              <svg
+                aria-hidden="true"
+                width="18"
+                height="18"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="square"
+              >
+                <path d="M8 14V3M4 7l4-4 4 4" />
+              </svg>
+            </NavLink>
+          </div>
+          <nav
+            aria-label="Contato"
+            className="flex flex-wrap gap-7 text-[13px] font-medium tracking-[0.14em] uppercase"
+          >
             <a
-              href="https://wa.me/5585988267557"
+              href={WHATSAPP}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 hover:text-[#e91e63]"
-              aria-label="WhatsApp"
+              className="flex min-h-11 items-center text-white transition-colors hover:text-[var(--color-primary)]"
             >
-              <MessageCircle className="h-5 w-5" />
-              <span>WhatsApp</span>
+              WhatsApp
             </a>
             <a
               href="https://www.instagram.com/dl_performanceclub/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 hover:text-[#e91e63]"
-              aria-label="Instagram"
+              className="flex min-h-11 items-center text-white transition-colors hover:text-[var(--color-primary)]"
             >
-              <svg
-                className="h-5 w-5"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden
-              >
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-              </svg>
-              <span>Instagram</span>
+              Instagram
             </a>
-          </div>
-          <div className="text-center text-xs text-white/60 space-y-1">
-            <p>Av. Eng. Leal Lima Verde, 1509</p>
-            <p>contato.dlperformance@gmail.com</p>
-            <p>© 2025 DL Performance. Todos os direitos reservados.</p>
+          </nav>
+          <div className="flex flex-col gap-1.5 text-[13px] leading-normal text-[#A3A3A3]">
+            <span>Av. Eng. Leal Lima Verde, 1509</span>
+            <span>contato.dlperformance@gmail.com</span>
+            <span>© 2025 DL Performance. Todos os direitos reservados.</span>
           </div>
         </div>
       </footer>
@@ -747,7 +648,7 @@ export default function Page() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Falar no WhatsApp"
-        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-transform hover:scale-110"
+        className="fixed right-6 bottom-6 z-50 flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-transform hover:scale-110"
         style={{ backgroundColor: "#25D366" }}
       >
         <svg viewBox="0 0 24 24" fill="white" className="h-7 w-7" aria-hidden>

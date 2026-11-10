@@ -5,9 +5,10 @@ interface NavLinkProps {
   children: React.ReactNode
   className?: string
   style?: React.CSSProperties
+  "aria-label"?: string
 }
 
-export function NavLink({ href, children, className, style }: NavLinkProps) {
+export function NavLink({ href, children, className, style, ...rest }: NavLinkProps) {
   function handleClick(e: React.MouseEvent<HTMLAnchorElement>) {
     e.preventDefault()
     const id = href.replace("#", "")
@@ -18,7 +19,7 @@ export function NavLink({ href, children, className, style }: NavLinkProps) {
   }
 
   return (
-    <a href={href} onClick={handleClick} className={className} style={style}>
+    <a href={href} onClick={handleClick} className={className} style={style} {...rest}>
       {children}
     </a>
   )
